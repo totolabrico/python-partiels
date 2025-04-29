@@ -1,1 +1,3 @@
 recursive-include src/python_partiels/templates *
+recursive-include src/python_partiels/samples *
+recursive-include src/python_partiels/exports *

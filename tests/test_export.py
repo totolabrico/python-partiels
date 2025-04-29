@@ -1,9 +1,19 @@
 import pytest
 from pathlib import Path
-from python_partiels.xml import Partiels
+import pkg_resources
+import os
+from python_partiels.Partiels import Partiels
 
 def test_export():
     partiels = Partiels()
-    partiels.setExecPath("/home/toto/Bureau/IRCAM/Partiels/build/Partiels/Partiels")
+    exec_path = os.environ.get("PARTIELS_EXEC_PATH")
+    assert exec_path is not None, "PARTIELS_EXEC_PATH environment variable is not set"
+    partiels.setExecPath(exec_path)    
     partiels.setVampPath("/opt/Partiels/PlugIns")
-    partiels.export("spectrogram", "/home/toto/Musique/patatine_mono.wav", "/home/toto/Bureau/IRCAM/Exports/json/", "json")
+    audiofile = pkg_resources.resource_filename(
+            __name__, 'samples/patatine.wav'
+        )
+    dest = pkg_resources.resource_filename(
+            __name__, 'exports/'
+        )
+    assert partiels.export("spectrogram", audiofile, dest, "json") == 0, "Partiels Export Failed"

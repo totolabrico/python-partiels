@@ -2,8 +2,8 @@ LICENSE
 MANIFEST.in
 README.md
 pyproject.toml
+src/python_partiels/Partiels.py
 src/python_partiels/__init__.py
-src/python_partiels/xml.py
 src/python_partiels.egg-info/PKG-INFO
 src/python_partiels.egg-info/SOURCES.txt
 src/python_partiels.egg-info/dependency_links.txt

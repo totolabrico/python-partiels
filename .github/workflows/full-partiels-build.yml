@@ -1,0 +1,61 @@
+name: Python Tests with Full Partiels Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout your repository
+      uses: actions/checkout@v4
+
+    - name: Install build dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y cmake ninja-build clang libasound2-dev libjack-jackd2-dev ladspa-sdk libfreetype-dev libfontconfig1-dev libx11-dev libxcomposite-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev libglu1-mesa-dev mesa-common-dev
+
+    - name: Clone Partiels repository
+      run: |
+        git clone --recurse-submodules https://github.com/Ircam-Partiels/Partiels.git partiels-src
+
+    - name: Build Partiels project
+      run: |
+        cd partiels-src
+        cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+        cmake --build build
+
+    - name: Add Partiels binary to PATH
+      run: |
+        echo "${{ github.workspace }}/partiels-src/build/Partiels" >> $GITHUB_PATH
+
+    - name: Check if Partiels binary is accessible
+      run: |
+        ls -l ${{ github.workspace }}/partiels-src/build/Partiels
+        # Juste pour voir le binaire
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install build and pytest
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install build pytest
+
+    - name: Build your Python package
+      run: |
+        python -m build
+
+    - name: Install the built package
+      run: |
+        pip install dist/*.whl
+
+    - name: Run Python tests
+      run: |
+        pytest tests/
