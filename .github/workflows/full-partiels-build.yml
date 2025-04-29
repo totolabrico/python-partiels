@@ -40,5 +40,4 @@ jobs:
         PARTIELS_EXECUTABLE: ${{ env.PARTIELS_EXECUTABLE }}
       run: |
         echo "Updating test.py with correct executable path..."
-        sed -i "s|partiels.setExecPath(.*)|partiels.setExecPath('${{ env.PARTIELS_EXECUTABLE }}')|" tests/test.py
         pytest tests/
