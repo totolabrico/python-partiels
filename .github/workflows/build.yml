@@ -32,7 +32,7 @@ jobs:
         wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/3.0.0/Crepe-Linux.tar.gz
         unzip Crepe-Linux.tar.gz -d /opt/Partiels/PlugIns
         wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/3.0.0/Whisper-Linux.tar.gz
-        wget Whisper-Linux.tar.gz -d /opt/Partiels/PlugIns
+        unzip Whisper-Linux.tar.gz -d /opt/Partiels/PlugIns
 
     - name: Set Partiels executable path dynamically
       run: |
