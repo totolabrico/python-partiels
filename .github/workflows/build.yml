@@ -31,6 +31,10 @@ jobs:
       run: |
         echo "PARTIELS_EXECUTABLE=$(realpath Partiels/Partiels)" >> $GITHUB_ENV
 
+    - name: Install Python dependencies
+      run: |
+        pip install build pytest
+
     - name: Build python-partiels
       run: |
         python -m build
@@ -38,10 +42,6 @@ jobs:
     - name: Install python-partiels
       run: |
         pip install dist/*.whl
-
-    - name: Install Python dependencies
-      run: |
-        pip install pytest
 
     - name: Run tests
       env:
