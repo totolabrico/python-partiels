@@ -33,7 +33,7 @@ jobs:
 
     - name: Set Partiels executable path dynamically
       run: |
-        echo "PARTIELS_EXEC_PATH=$(realpath Partiels/Partiels)" >> $GITHUB_ENV
+        echo "PARTIELS_EXECUTABLE=$(realpath Partiels/Partiels)" >> $GITHUB_ENV
 
     - name: Run tests
       env:
