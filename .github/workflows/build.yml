@@ -30,9 +30,9 @@ jobs:
         wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/VAX-Vamp-Plugin-v1.0.0-Linux.zip
         unzip VAX-Vamp-Plugin-v1.0.0-Linux.zip -d /opt/Partiels/PlugIns
         wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/3.0.0/Crepe-Linux.tar.gz
-        unzip Crepe-Linux.tar.gz -d /opt/Partiels/PlugIns
+        tar -xzf Crepe-Linux.tar.gz -C /opt/Partiels/PlugIns
         wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/3.0.0/Whisper-Linux.tar.gz
-        unzip Whisper-Linux.tar.gz -d /opt/Partiels/PlugIns
+        tar -xzf Whisper-Linux.tar.gz -C /opt/Partiels/PlugIns
 
     - name: Set Partiels executable path dynamically
       run: |
