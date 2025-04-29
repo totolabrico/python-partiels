@@ -27,13 +27,13 @@ jobs:
         wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/Ircam-Vamp-Plugins-Linux.zip
         unzip Ircam-Vamp-Plugins-Linux.zip -d /opt/Partiels/PlugIns
 
+    - name: Make Partiels executable
+      run: |
+        chmod +x Partiels/Partiels
+
     - name: Set Partiels executable path dynamically
       run: |
         echo "PARTIELS_EXECUTABLE=$(realpath Partiels/Partiels)" >> $GITHUB_ENV
-
-    - name: Make Partiels executable
-      run: |
-        chmod +x ${{ env.PARTIELS_EXECUTABLE }}
 
     - name: Install Python dependencies
       run: |
