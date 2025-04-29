@@ -42,6 +42,7 @@ class Partiels():
     def export(self, template, audiofile, dest, format):
         template = self.createXml(template, audiofile)
         cmd = [self.exec_path, "--export", "-i", audiofile, "-t", template, "-o", dest, "-f", format]
+        print(f"VAMP_PATH in env: {os.environ.get('VAMP_PATH')}")
         env = os.environ.copy()
         ret = subprocess.run(cmd, capture_output=True, text=True, env=env)
         if ret.stderr:
