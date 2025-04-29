@@ -17,4 +17,4 @@ def test_export():
     dest = pkg_resources.resource_filename(
             __name__, 'exports/'
         )
-    assert partiels.export("spectrogram", audiofile, dest, "json") == 0, "Partiels Export Failed"
+    assert partiels.export("beat_detection", audiofile, dest, "json") == 0, "Partiels Export Failed"
