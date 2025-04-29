@@ -29,7 +29,7 @@ jobs:
 
     - name: Make Partiels executable
       run: |
-        chmod 444 Partiels/Partiels
+        chmod 777 Partiels/Partiels
 
     - name: Set Partiels executable path dynamically
       run: |
