@@ -25,9 +25,8 @@ jobs:
     - name: Download and install Ircam Vamp Plugins
       run: |
         wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/Ircam-Vamp-Plugins-Linux.zip
-        mkdir -p temp/Ircam-Vamp-Plugins-Linux
-        unzip Ircam-Vamp-Plugins-Linux.zip -d temp/Ircam-Vamp-Plugins-Linux
-        sh temp/Ircam-Vamp-Plugins-Linux/Install.sh
+        unzip Ircam-Vamp-Plugins-Linux.zip
+        sh Ircam-Vamp-Plugins-Linux/Install.sh
         
         £wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/VAX-Vamp-Plugin-v1.0.0-Linux.zip
         £unzip VAX-Vamp-Plugin-v1.0.0-Linux.zip -d /opt/Partiels/PlugIns
