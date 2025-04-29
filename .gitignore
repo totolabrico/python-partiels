@@ -1,3 +1,5 @@
 src/python_partiels.egg-info/
 dist/
 __pycache__/
+tests/exports/*
+!tests/exports/*.py

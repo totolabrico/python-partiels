@@ -2,6 +2,7 @@ import pytest
 from pathlib import Path
 import pkg_resources
 import os
+
 from python_partiels.Partiels import Partiels
 
 def test_export():
