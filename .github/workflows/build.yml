@@ -20,7 +20,7 @@ jobs:
         wget https://github.com/Ircam-Partiels/Partiels/releases/download/2.0.10/Partiels-Linux.tar.gz
         mkdir -p Partiels
         tar -xzf Partiels-Linux.tar.gz -C Partiels
-        Partiels/Partiels --help
+        Partiels/Partiels/Partiels --help
 
     - name: Download and install Ircam Vamp Plugins
       run: |
