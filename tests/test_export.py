@@ -1,5 +1,6 @@
 import pytest
-from example_package_thomas_barbe.xml import Partiels
+from pathlib import Path
+from python_partiels.xml import Partiels
 
 def test_export():
     partiels = Partiels()

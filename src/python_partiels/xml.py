@@ -1,4 +1,5 @@
 import pkg_resources
+from pathlib import Path
 from lxml import etree
 import subprocess
 import os
@@ -23,7 +24,6 @@ class Partiels():
         reader.append(value)
         return reader
     '''
-     
     def createXml(self, template, audiofile):
         #xml_path = 'templates/' + template + '.ptldoc'
         xml_path = pkg_resources.resource_filename(
@@ -47,11 +47,3 @@ class Partiels():
             print(ret.stderr)
         if ret.stdout:
             print(ret.stdout)
-
-'''
-def testExport():
-    partiels = Partiels()
-    partiels.setExecPath("/home/toto/Bureau/IRCAM/Partiels/build/Partiels/Partiels")
-    partiels.setVampPath("/opt/Partiels/PlugIns")
-    partiels.export("spectrogram", "/home/toto/Musique/patatine_mono.wav", "/home/toto/Bureau/IRCAM/Exports/json/", "json")
-'''
