@@ -37,7 +37,7 @@ jobs:
     
     - name: Install python-partiels
       run: |
-        pip install dist/*whl
+        pip install dist/*.whl
 
     - name: Install Python dependencies
       run: |
