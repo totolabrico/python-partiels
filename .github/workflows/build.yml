@@ -48,7 +48,5 @@ jobs:
         pip install dist/*.whl
 
     - name: Run tests
-      env:
-        PARTIELS_EXECUTABLE: ${{ env.PARTIELS_EXECUTABLE }}
       run: |
         pytest tests/
