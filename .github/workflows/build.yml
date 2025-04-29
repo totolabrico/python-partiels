@@ -32,6 +32,7 @@ jobs:
         mv Partiels/Partiels /tmp/Partiels
         chmod +x /tmp/Partiels
         echo "PARTIELS_EXECUTABLE=/tmp/Partiels" >> $GITHUB_ENV
+        /tmp/Partiels --help
 
     - name: Install Python dependencies
       run: |
