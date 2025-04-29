@@ -10,7 +10,7 @@ def test_export():
     exec_path = os.environ.get("PARTIELS_EXECUTABLE")
     assert exec_path is not None, "PARTIELS_EXECUTABLE environment variable is not set"
     partiels.setExecPath(exec_path)
-    partiels.setVampPath("/opt/Partiels/PlugIns")
+    #partiels.setVampPath("/opt/Partiels/PlugIns")
     audiofile = pkg_resources.resource_filename(
             __name__, 'samples/patatine.wav'
         )
