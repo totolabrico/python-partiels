@@ -31,6 +31,10 @@ jobs:
       run: |
         echo "PARTIELS_EXECUTABLE=$(realpath Partiels/Partiels)" >> $GITHUB_ENV
 
+    - name: Make Partiels executable
+      run: |
+        chmod +x ${{ env.PARTIELS_EXECUTABLE }}
+
     - name: Install Python dependencies
       run: |
         pip install build pytest
@@ -47,5 +51,4 @@ jobs:
       env:
         PARTIELS_EXECUTABLE: ${{ env.PARTIELS_EXECUTABLE }}
       run: |
-        echo "Updating test.py with correct executable path..."
         pytest tests/
