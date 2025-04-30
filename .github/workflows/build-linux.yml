@@ -48,3 +48,19 @@ jobs:
 
     - name: Include common build and test steps
       uses: ./build-common.yml
+
+    - name: Install Python dependencies
+      run: |
+        pip install build pytest
+
+    - name: Build python-partiels
+      run: |
+        python -m build
+    
+    - name: Install python-partiels
+      run: |
+        pip install dist/*.whl
+
+    - name: Run tests
+      run: |
+        pytest tests/
