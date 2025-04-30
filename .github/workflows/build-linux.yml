@@ -47,4 +47,4 @@ jobs:
         ls $HOME/vamp
 
     - name: Include common build and test steps
-      uses: ./.github/workflows/build-common.yml
+      uses: ./build-common.yml

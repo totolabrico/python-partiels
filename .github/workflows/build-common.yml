@@ -1,7 +1,5 @@
 name: Build and Test Python Partiels (Common Steps)
 
-on: [push, pull_request]
-
 jobs:
   build-test-common:
     steps:
