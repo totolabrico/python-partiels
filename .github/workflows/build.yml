@@ -44,7 +44,6 @@ jobs:
     - name: Set Partiels executable path dynamically
       run: |
         echo "PARTIELS_EXECUTABLE=$(realpath Partiels/Partiels/Partiels)" >> $GITHUB_ENV
-        #echo "VAMP_PATH=/opt/Partiels/PlugIns" >> $GITHUB_ENV
 
     - name: Install Python dependencies
       run: |
@@ -61,5 +60,3 @@ jobs:
     - name: Run tests
       run: |
         pytest tests/
-      env:
-        VAMP_PATH: $HOME/vamp
