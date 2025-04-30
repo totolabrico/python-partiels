@@ -46,9 +46,6 @@ jobs:
       run: |
         ls $HOME/vamp
 
-    - name: Include common build and test steps
-      uses: ./build-common.yml
-
     - name: Install Python dependencies
       run: |
         pip install build pytest
