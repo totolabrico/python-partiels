@@ -31,6 +31,7 @@ jobs:
    
     - name: Install Ircam Vamp Plugins
       run: |
+        mkdir $HOME/vamp
         unzip Ircam-Vamp-Plugins-Linux.zip
         cp Ircam-Vamp-Plugins-Linux/*.so $HOME/vamp/
         unzip VAX-Vamp-Plugin-v1.0.0-Linux.zip
