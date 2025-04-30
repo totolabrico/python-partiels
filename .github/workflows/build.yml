@@ -29,14 +29,14 @@ jobs:
         sh Ircam-Vamp-Plugins-Linux/Install.sh
         wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/VAX-Vamp-Plugin-v1.0.0-Linux.zip
         unzip VAX-Vamp-Plugin-v1.0.0-Linux.zip
-        tar -xzf VAX-Vamp-Plugin-v1.0.0-Linux/VAX-Vamp-Plugin-Linux.tar.gz
-        sh VAX-Vamp-Plugin-v1.0.0-Linux/VAX-Vamp-Plugin-Linux/VAX-Vamp-Plugin/Install.sh
+        tar -xzf VAX-Vamp-Plugin-Linux.tar.gz
+        sh VAX-Vamp-Plugin/Install.sh
         wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/3.0.0/Crepe-Linux.tar.gz
         tar -xzf Crepe-Linux.tar.gz
-        sh Crepe-Linux/Install.sh
+        sh Crepe/Install.sh
         wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/3.0.0/Whisper-Linux.tar.gz
         tar -xzf Whisper-Linux.tar.gz
-        sh Whisper-Linux/Install.sh
+        sh Whisper/Install.sh
 
 
     - name: list installed Ircam Vamp Plugins
