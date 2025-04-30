@@ -3,11 +3,15 @@ from pathlib import Path
 from lxml import etree
 import subprocess
 import os
+import shutil
 
 class Partiels():
 
     def __init__(self):
-        self.exec_path = None
+        self.setExecPath(self.findExecPath())
+
+    def getExecPath(self):
+        return self.exec_path
 
     def setExecPath(self, path):
         self.exec_path = path
@@ -15,32 +19,19 @@ class Partiels():
     def setVampPath(self, path):
         os.environ["VAMP_PATH"] = path
 
-    '''
-    def createReader(self, audiofile, channel):
-        reader = etree.Element("reader")
-        value = etree.Element("value")
-        value.set("file", audiofile)
-        value.set("channel", str(channel))
-        reader.append(value)
-        return reader
-    '''
-    def createXml(self, template, audiofile):
-        #xml_path = 'templates/' + template + '.ptldoc'
-        xml_path = pkg_resources.resource_filename(
-            __name__, 'templates/' + template + '.ptldoc'
-        )
-        tree = etree.parse(xml_path)
-        root = tree.getroot()
-        #path = "templates/temp/" + template + ".ptldoc"
-        path = pkg_resources.resource_filename(
-            __name__, 'templates/temp/' + template + '.ptldoc'
-        )
-        with open(path, 'wb') as f:
-            tree.write(f, pretty_print=True, xml_declaration=True, encoding='UTF-8')
-        return path
+    def findExecPath(self):
+        exec_name = "Partiels"
+        exec_path = shutil.which(exec_name)
+        if exec_path:
+            return exec_path
+        else:
+            print(f"Executable '{exec_name}' non trouvé dans PATH.")
+        return None
 
     def export(self, template, audiofile, dest, format):
-        template = self.createXml(template, audiofile)
+        template = pkg_resources.resource_filename(
+            __name__, 'templates/' + template + '.ptldoc'
+        )
         cmd = [self.exec_path, "--export", "-i", audiofile, "-t", template, "-o", dest, "-f", format]
         env = os.environ.copy()
         ret = subprocess.run(cmd, capture_output=True, text=True, env=env)
