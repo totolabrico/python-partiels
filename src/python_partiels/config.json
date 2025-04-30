@@ -1,0 +1,7 @@
+{
+    "partiels_handled_versions":
+        {
+            "min": [2, 0, 9],
+            "max": [2, 0, 10]
+        }
+}
