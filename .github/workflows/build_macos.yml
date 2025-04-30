@@ -1,0 +1,61 @@
+name: Test Python Partiels macOS
+
+on: [push, pull_request]
+
+jobs:
+  build-test:
+    runs-on: macos-13
+
+    steps:
+    - name: Checkout your Python repo
+      uses: actions/checkout@v4
+
+    - name: Install system dependencies
+      run: |
+        brew install wget unzip
+
+    - name: Download and extract Partiels binary
+      run: |
+        wget https://github.com/Ircam-Partiels/Partiels/releases/download/2.0.10/Partiels-macOS.tar.gz
+        tar -xzf Partiels-macOS.tar.gz
+        sh Partiels/Partiels-install.sh
+        Partiels/Partiels --help
+
+    - name: Download Ircam Vamp Plugins
+      run: |
+        wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/Ircam-Vamp-Plugins-macOS.zip
+        wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/VAX-Vamp-Plugin-v1.0.0-macOS.zip
+        wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/3.0.0/Crepe-macOS.tar.gz
+        wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/3.0.0/Whisper-macOS.tar.gz
+
+    - name: Install Ircam Vamp Plugins
+      run: |
+        mkdir $HOME/vamp
+        unzip Ircam-Vamp-Plugins-macOS.zip
+        cp Ircam-Vamp-Plugins-macOS/*.dylib $HOME/vamp/
+        unzip VAX-Vamp-Plugin-v1.0.0-macOS.zip
+        cp VAX-Vamp-Plugin/*.dylib $HOME/vamp/
+        tar -xzf Crepe-macOS.tar.gz
+        cp Crepe/*.dylib $HOME/vamp/
+        tar -xzf Whisper-macOS.tar.gz
+        cp Whisper/*.dylib $HOME/vamp/
+
+    - name: List installed Ircam Vamp Plugins
+      run: |
+        ls $HOME/vamp
+
+    - name: Install Python dependencies
+      run: |
+        pip install build pytest
+
+    - name: Build python-partiels
+      run: |
+        python -m build
+    
+    - name: Install python-partiels
+      run: |
+        pip install dist/*.whl
+
+    - name: Run tests
+      run: |
+        pytest tests/
