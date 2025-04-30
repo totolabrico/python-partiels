@@ -1,0 +1,160 @@
+name: Test Python Partiels on Multiple OS
+
+on: [push, pull_request]
+
+jobs:
+  build-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, windows-2022, macos-13]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Dépendances système
+      - name: Install system dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt update
+          sudo apt install -y unzip wget
+
+      - name: Install system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install wget unzip
+
+      - name: Install system dependencies (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          choco install wget unzip 7zip
+
+      # Installation de Partiels
+      - name: Download and install Partiels (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          wget https://github.com/Ircam-Partiels/Partiels/releases/download/2.0.10/Partiels-Linux.tar.gz
+          tar -xzf Partiels-Linux.tar.gz
+          sh Partiels/Partiels-install.sh
+          Partiels/Partiels --help
+
+      - name: Download and install Partiels (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          wget https://github.com/Ircam-Partiels/Partiels/releases/download/2.0.10/Partiels-MacOS.dmg
+          hdiutil attach Partiels-MacOS.dmg
+          cp -r /Volumes/Partiels/Partiels.app /Applications
+          hdiutil detach /Volumes/Partiels
+          /Applications/Partiels.app/Contents/MacOS/Partiels --help
+
+      - name: Download and install Partiels (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          wget https://github.com/Ircam-Partiels/Partiels/releases/download/2.0.10/Partiels-Windows.exe
+          start /wait Partiels-Windows.exe /S
+          Partiels\Partiels.exe --help
+
+      # Téléchargement des plugins
+      - name: Download Vamp Plugins (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/Ircam-Vamp-Plugins-Linux.zip
+          wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/VAX-Vamp-Plugin-v1.0.0-Linux.zip
+          wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/3.0.0/Crepe-Linux.tar.gz
+          wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/3.0.0/Whisper-Linux.tar.gz
+
+      - name: Download Vamp Plugins (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/Ircam-Vamp-Plugins-macOS.zip
+          wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/VAX-Vamp-Plugin-v1.0.0-macOS.zip
+          wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/3.0.0/Crepe-MacOS.pkg
+          wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/3.0.0/Whisper-MacOS.pkg
+
+      - name: Download Vamp Plugins (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/Ircam-Vamp-Plugins-Windows.zip
+          wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/VAX-Vamp-Plugin-v1.0.0-Windows.zip
+          wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/3.0.0/Crepe-Windows.exe
+          wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/3.0.0/Whisper-Windows.exe
+
+      # Installation des plugins
+      - name: Install Vamp Plugins (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p $HOME/vamp
+          unzip Ircam-Vamp-Plugins-Linux.zip
+          cp Ircam-Vamp-Plugins-Linux/*.so $HOME/vamp/
+          unzip VAX-Vamp-Plugin-v1.0.0-Linux.zip
+          tar -xzf VAX-Vamp-Plugin-Linux.tar.gz
+          cp VAX-Vamp-Plugin/*.so $HOME/vamp/
+          tar -xzf Crepe-Linux.tar.gz
+          cp Crepe/*.so $HOME/vamp/
+          tar -xzf Whisper-Linux.tar.gz
+          cp Whisper/*.so $HOME/vamp/
+
+      - name: Install Vamp Plugins (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          mkdir -p $HOME/vamp
+          unzip Ircam-Vamp-Plugins-macOS.zip
+          cp Ircam-Vamp-Plugins-macOS/*.dylib $HOME/vamp/
+          unzip VAX-Vamp-Plugin-v1.0.0-macOS.zip
+          tar -xzf VAX-Vamp-Plugin-macOS.tar.gz
+          cp VAX-Vamp-Plugin/*.dylib $HOME/vamp/
+
+          mkdir Crepe-extracted
+          pkgutil --expand Crepe-MacOS.pkg Crepe-extracted
+          cd Crepe-extracted
+          cat Payload | gunzip -dc | cpio -i
+          cd ..
+          find Crepe-extracted -name '*.dylib' -exec cp {} $HOME/vamp/ \;
+
+          mkdir Whisper-extracted
+          pkgutil --expand Whisper-MacOS.pkg Whisper-extracted
+          cd Whisper-extracted
+          cat Payload | gunzip -dc | cpio -i
+          cd ..
+          find Whisper-extracted -name '*.dylib' -exec cp {} $HOME/vamp/ \;
+
+      - name: Install Vamp Plugins (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          mkdir $env:USERPROFILE\vamp
+          unzip Ircam-Vamp-Plugins-Windows.zip
+          copy Ircam-Vamp-Plugins-Windows\*.dll $env:USERPROFILE\vamp\
+          unzip VAX-Vamp-Plugin-v1.0.0-Windows.zip
+          tar -xzf VAX-Vamp-Plugin-Windows.tar.gz
+          copy VAX-Vamp-Plugin\*.dll $env:USERPROFILE\vamp\
+
+          7z x Crepe-Windows.exe -oCrepe-extracted
+          copy Crepe-extracted\*.dll $env:USERPROFILE\vamp\
+
+          7z x Whisper-Windows.exe -oWhisper-extracted
+          copy Whisper-extracted\*.dll $env:USERPROFILE\vamp\
+        shell: powershell
+
+      # Liste des plugins installés
+      - name: List installed Vamp Plugins
+        run: |
+          ls $HOME/vamp || dir $env:USERPROFILE\vamp
+        shell: bash
+
+      # Build et tests Python
+      - name: Install Python dependencies
+        run: |
+          pip install build pytest
+
+      - name: Build python-partiels
+        run: |
+          python -m build
+
+      - name: Install built python-partiels
+        run: |
+          pip install dist/*.whl
+
+      - name: Run tests
+        run: |
+          pytest tests/

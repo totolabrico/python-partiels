@@ -1,4 +1,4 @@
-name: Test Python Partiels
+name: Test Python Partiels Linux
 
 on: [push, pull_request]
 
