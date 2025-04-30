@@ -18,9 +18,9 @@ jobs:
     - name: Download and extract Partiels binary
       run: |
         wget https://github.com/Ircam-Partiels/Partiels/releases/download/2.0.10/Partiels-Linux.tar.gz
-        mkdir -p Partiels
-        tar -xzf Partiels-Linux.tar.gz -C Partiels
-        Partiels/Partiels/Partiels --help
+        tar -xzf Partiels-Linux.tar.gz
+        sh Partiels/Partiels-install.sh
+        Partiels/Partiels --help
 
     - name: Download Ircam Vamp Plugins
       run: |
@@ -48,7 +48,7 @@ jobs:
 
     - name: Set Partiels executable path dynamically
       run: |
-        echo "PARTIELS_EXECUTABLE=$(realpath Partiels/Partiels/Partiels)" >> $GITHUB_ENV
+        echo "PARTIELS_EXECUTABLE=$(realpath Partiels/Partiels)" >> $GITHUB_ENV
 
     - name: Install Python dependencies
       run: |
