@@ -84,37 +84,27 @@ class Exporter():
             "--output=" + self.output,
             "--format=" + self.format
         ]
-
         if self.adapt:
             res += "--adapt"
-
-        if self.format == "jpeg" or self.format == "csv":
-            res += [
-                "--width=" + str(self. width),
-                "--height=" + str(self.height),
-            ]
+        if self.format == "jpeg" or self.format == "png":
+            res += ["--width=" + str(self. width), "--height=" + str(self.height)]
             if self.groups:
                 res += "--groups"
-
         if self.format == "csv" or self.format == "json":
             if self.nogrids:
                 res += "--nogrids"
-
         if self.format == "csv":
             res += "--separator=" + self.separator 
             if self.header:
                 res += "--header"
-        
         if self.format == "json":
             if self.description:
                 res += "--description"
-
         return res
 
     def export(self):
         if self.input == None or self.output == None:
-            self.error("export", "Input or output value is None")
-            return 1
+            return self.error("export", "Input or output value is None")
         cmd = [self.exec_path, "--export"] + self.getArgs()
         print(cmd)
         ret = subprocess.run(cmd, capture_output=True, text=True)

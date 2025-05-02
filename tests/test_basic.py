@@ -16,8 +16,9 @@ def test_check_version():
 
 
 def export(partiels):
-    assert partiels.exporter.export() == 0, "Partiels JPEG Export Failed"
     partiels.exporter.setFormat("JPEG")
+    assert partiels.exporter.export() == 0, "Partiels JPEG Export Failed"
+    partiels.exporter.setFormat("Png")
     assert partiels.exporter.export() == 0, "Partiels PNG Export Failed"
     partiels.exporter.setFormat("csv")
     assert partiels.exporter.export() == 0, "Partiels CSV Export Failed"
@@ -29,7 +30,6 @@ def test_export():
     partiels.exporter.setInput(pkg_resources.resource_filename(__name__, 'samples/patatine.wav'))
     partiels.exporter.setTemplate('beat_detection')
     partiels.exporter.setOutput(pkg_resources.resource_filename(__name__, 'exports/'))
-    partiels.exporter.setFormat("jpeg")
     export(partiels)
     partiels.exporter.setWidth(500)
     partiels.exporter.setHeight(200)
