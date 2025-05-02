@@ -1,9 +1,9 @@
 from pathlib import Path
 from lxml import etree
-import subprocess
 import os
 import shutil
 import json
+import subprocess
 from .Version import Version
 from .Exporter import Exporter
 
@@ -15,7 +15,7 @@ class Partiels():
     def __init__(self):
         self.setExecPath(self.findExecPath())
         self.isHandledVersion = self.checkVersion()
-        self.exporter = Exporter()
+        self.exporter = Exporter(self.exec_path)
 
     def getExecPath(self):
         return self.exec_path
@@ -52,13 +52,3 @@ class Partiels():
             print("The Version of Partiel is too old for the wrapper")
             return False
         return True
-
-    def export(self):
-        cmd = [self.exec_path, "--export"] + self.exporter.getArgs()
-        print(cmd)
-        ret = subprocess.run(cmd, capture_output=True, text=True)
-        if ret.stderr:
-            print("Err:\n", ret.stderr)
-        if ret.stdout:
-            print("Out:\n", ret.stdout)
-        return ret.returncode
