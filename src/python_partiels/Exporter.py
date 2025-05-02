@@ -112,6 +112,9 @@ class Exporter():
         return res
 
     def export(self):
+        if self.input == None or self.output == None:
+            self.error("export", "Input or output value is None")
+            return 1
         cmd = [self.exec_path, "--export"] + self.getArgs()
         print(cmd)
         ret = subprocess.run(cmd, capture_output=True, text=True)
