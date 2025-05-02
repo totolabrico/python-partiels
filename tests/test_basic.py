@@ -12,15 +12,18 @@ def test_create_instance():
 
 def test_check_version():
     partiels = Partiels()
-    print(partiels.isMatchingVersion)
-    assert partiels.isMatchingVersion == True, "Partiels Executable Version does not match the wrapper" 
+    assert partiels.isHandledVersion == True, "Partiels Executable Version does not match the wrapper" 
 
 def test_export():
     partiels = Partiels()
-    audiofile = pkg_resources.resource_filename(
-            __name__, 'samples/patatine.wav'
-        )
-    dest = pkg_resources.resource_filename(
-            __name__, 'exports/'
-        )
-    assert partiels.export("beat_detection", audiofile, dest, "json") == 0, "Partiels Export Failed"
+    partiels.exporter.setInput(pkg_resources.resource_filename(__name__, 'samples/patatine.wav'))
+    partiels.exporter.setTemplate('beat_detection')
+    partiels.exporter.setOutput(pkg_resources.resource_filename(__name__, 'exports/'))
+    partiels.exporter.setFormat("jpeg")
+    assert partiels.export() == 0, "Partiels JPEG Export Failed"
+    partiels.exporter.setFormat("JPEG")
+    assert partiels.export() == 0, "Partiels PNG Export Failed"
+    partiels.exporter.setFormat("csv")
+    assert partiels.export() == 0, "Partiels CSV Export Failed"
+    partiels.exporter.setFormat("json")
+    assert partiels.export() == 0, "Partiels JSON Export Failed"
