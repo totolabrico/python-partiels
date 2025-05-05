@@ -5,7 +5,12 @@ import shutil
 import json
 import subprocess
 from .Version import Version
-from .Exporter import Exporter
+from .Document import Document
+from .Exporters.ImageExporter import ImageExporter
+from .Exporters.TextExporter import CsvExporter, JsonExporter, CueExporter
+from .Exporters.SdifExporter import SdifExporter
+from .Exporters.ReaperExporter import ReaperExporter
+from .Exporters.LabExporter import LabExporter
 
 PARTIELS_HANDLED_VERSION_MIN = "2.0.9"
 PARTIELS_HANDLED_VERSION_MAX = "2.0.10"
@@ -15,7 +20,6 @@ class Partiels():
     def __init__(self):
         self.setExecPath(self.findExecPath())
         self.isHandledVersion = self.checkVersion()
-        self.exporter = Exporter(self.exec_path)
 
     def getExecPath(self):
         return self.exec_path
@@ -52,3 +56,31 @@ class Partiels():
             print("The Version of Partiel is too old for the wrapper")
             return False
         return True
+
+    def createDocument(self, input=None, template="Factory"):
+        return Document(input, template)
+
+    def createJpegExporter(self, format = "jpeg", width = 1000, height = 800, groups = False):
+        return ImageExporter(self.exec_path, format, width, height, groups)
+
+    def createPngExporter(self, format = "png", width = 1000, height = 800, groups = False):
+        return ImageExporter(self.exec_path, format, width, height, groups)
+
+    def createCsvExporter(self, nogrids = False, header = False, separator = ","):
+        return CsvExporter(self.exec_path, nogrids, header, separator)
+
+    def createJsonExporter(self, nogrids = False, description = False):
+        return JsonExporter(self.exec_path, nogrids, description)
+
+    def createCueExporter(self, nogrids = False):
+        return CueExporter(self.exec_path, nogrids)
+
+    def createSdifExporter(self, frame = None, matrix = None, colname = None):
+        return SdifExporter(self.exec_path, frame, matrix, colname)
+
+    def createReaperExporter(self, reaperType = "region"):
+        return ReaperExporter(self.exec_path, reaperType)
+
+    def createLabExporter(self):
+        return LabExporter(self.exec_path)
+

@@ -15,30 +15,37 @@ def test_check_version():
     assert partiels.isHandledVersion == True, "Partiels Executable Version does not match the wrapper" 
 
 
-def export(partiels):
-    partiels.exporter.setFormat("JPEG")
-    assert partiels.exporter.export() == 0, "Partiels JPEG Export Failed"
-    partiels.exporter.setFormat("Png")
-    assert partiels.exporter.export() == 0, "Partiels PNG Export Failed"
-    partiels.exporter.setFormat("csv")
-    assert partiels.exporter.export() == 0, "Partiels CSV Export Failed"
-    partiels.exporter.setFormat("json")
-    assert partiels.exporter.export() == 0, "Partiels JSON Export Failed"
-
 def test_export():
     partiels = Partiels()
-    partiels.exporter.setInput(pkg_resources.resource_filename(__name__, 'samples/patatine.wav'))
-    partiels.exporter.setTemplate('beat_detection')
-    partiels.exporter.setOutput(pkg_resources.resource_filename(__name__, 'exports/'))
-    export(partiels)
-    partiels.exporter.setWidth(500)
-    partiels.exporter.setHeight(200)
-    partiels.exporter.setAdapt(True)
-    partiels.exporter.setDescription(True)
-    partiels.exporter.setGroups(True)
-    partiels.exporter.setHeader(True)
-    partiels.exporter.setNogrids(True)
-    partiels.exporter.setCharacter(":")
-    partiels.exporter.setReaperType("marker")
-    export(partiels)
+    root = pkg_resources.resource_filename(__name__, './')
+    audiofile = root + 'samples/patatine.wav'
+    dest = root + 'exports/'
+    document = partiels.createDocument(audiofile, 'beat_detection')
 
+    
+    jpeg_exporter = partiels.createJpegExporter()
+    assert jpeg_exporter.export(document, dest) == 0, "Export JPEG FAILED"
+    
+    png_exporter = partiels.createPngExporter()
+    assert png_exporter.export(document, dest) == 0, "Export PNG FAILED"
+    
+    json_exporter = partiels.createJsonExporter()
+    assert json_exporter.export(document, dest) == 0, "Export JSON FAILED"
+    
+    csv_exporter = partiels.createCsvExporter()
+    assert csv_exporter.export(document, dest) == 0, "Export CSV FAILED"
+    
+    reaper_exporter = partiels.createReaperExporter()
+    assert reaper_exporter.export(document, dest) == 0, "Export REAPER FAILED"
+
+    lab_exporter = partiels.createLabExporter()
+    assert lab_exporter.export(document, dest) == 0, "Export LAB FAILED"
+    
+    cue_exporter = partiels.createCueExporter()
+    assert cue_exporter.export(document, dest) == 0, "Export CUE FAILED"
+    
+    '''
+    sdif_exporter = partiels.createSdifExporter()
+    err = sdif_exporter.export(document, dest)
+    assert  err == 0, "Export SDIF FAILED. ERROR CODE:" + str(err)
+    '''
