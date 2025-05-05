@@ -33,14 +33,18 @@ jobs:
       run: |
         mkdir $HOME/vamp
         unzip Ircam-Vamp-Plugins-Linux.zip
-        cp Ircam-Vamp-Plugins-Linux/*.so $HOME/vamp/
+        sh Ircam-Vamp-Plugins-Linux/Install.sh
+        #cp Ircam-Vamp-Plugins-Linux/*.so $HOME/vamp/
         unzip VAX-Vamp-Plugin-v1.0.0-Linux.zip
         tar -xzf VAX-Vamp-Plugin-Linux.tar.gz
-        cp VAX-Vamp-Plugin/*.so $HOME/vamp/
+        sh VAX-Vamp-Plugin/Install.sh
+        #cp VAX-Vamp-Plugin/*.so $HOME/vamp/
         tar -xzf Crepe-Linux.tar.gz
-        cp Crepe/*.so $HOME/vamp/
+        #cp Crepe/*.so $HOME/vamp/
+        sh Crepe/Install.sh
         tar -xzf Whisper-Linux.tar.gz
-        cp Whisper/*.so $HOME/vamp/
+        #cp Whisper/*.so $HOME/vamp/
+        sh Whisper/Install.sh
 
     - name: list installed Ircam Vamp Plugins
       run: |
