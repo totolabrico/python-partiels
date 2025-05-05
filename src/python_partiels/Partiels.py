@@ -24,10 +24,10 @@ class Partiels():
     def getExecPath(self):
         return self.exec_path
 
-    def setExecPath(self, path):
+    def setExecPath(self, path: str):
         self.exec_path = path
 
-    def setVampPath(self, path):
+    def setVampPath(self, path: str):
         os.environ["VAMP_PATH"] = path
 
     def findExecPath(self):
@@ -57,28 +57,28 @@ class Partiels():
             return False
         return True
 
-    def createDocument(self, input=None, template="Factory"):
+    def createDocument(self, input:str =None, template:str ="Factory"):
         return Document(input, template)
 
-    def createJpegExporter(self, format = "jpeg", width = 1000, height = 800, groups = False):
+    def createJpegExporter(self, format:str = "jpeg", width:int = 1000, height:int = 800, groups:bool = False):
         return ImageExporter(self.exec_path, format, width, height, groups)
 
-    def createPngExporter(self, format = "png", width = 1000, height = 800, groups = False):
+    def createPngExporter(self, format:str = "png", width:int = 1000, height:int = 800, groups:bool = False):
         return ImageExporter(self.exec_path, format, width, height, groups)
 
-    def createCsvExporter(self, nogrids = False, header = False, separator = ","):
+    def createCsvExporter(self, nogrids:bool = False, header:bool = False, separator:str = ","):
         return CsvExporter(self.exec_path, nogrids, header, separator)
 
-    def createJsonExporter(self, nogrids = False, description = False):
+    def createJsonExporter(self, nogrids:bool = False, description:bool = False):
         return JsonExporter(self.exec_path, nogrids, description)
 
-    def createCueExporter(self, nogrids = False):
+    def createCueExporter(self, nogrids:bool = False):
         return CueExporter(self.exec_path, nogrids)
 
-    def createSdifExporter(self, frame = None, matrix = None, colname = None):
+    def createSdifExporter(self, frame:str = None, matrix:str = None, colname:str = None):
         return SdifExporter(self.exec_path, frame, matrix, colname)
 
-    def createReaperExporter(self, reaperType = "region"):
+    def createReaperExporter(self, reaperType:str = "region"):
         return ReaperExporter(self.exec_path, reaperType)
 
     def createLabExporter(self):

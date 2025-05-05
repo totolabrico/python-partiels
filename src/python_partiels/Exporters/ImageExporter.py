@@ -1,4 +1,5 @@
 from .Exporter import Exporter
+from ..Document import Document
 
 class ImageExporter(Exporter):
     
@@ -13,7 +14,7 @@ class ImageExporter(Exporter):
         self.setHeight(height)
         self.setGroups(groups)
 
-    def setFormat(self, format):
+    def setFormat(self, format: str):
         valid_formats = ["jpeg", "png"]
         format = format.lower()
         if format not in valid_formats:
@@ -21,24 +22,24 @@ class ImageExporter(Exporter):
         self.format = format
         return 0
 
-    def setDimension(self, name, value):
+    def setDimension(self, name: str, value: int):
         if value < 1:
             return self.error(f"set{name.capitalize()}", "value must be greater than 0")
         setattr(self, name.lower(), value)
         return 0
 
-    def setWidth(self, width):
+    def setWidth(self, width: int):
         return self.setDimension("width", width)
 
-    def setHeight(self, height):
+    def setHeight(self, height: int):
         return self.setDimension("height", height)
 
-    def setGroups(self, value):
+    def setGroups(self, value: bool):
         if super().checkBoolAttr("groups", value):
             return
         self.groups = value
 
-    def getCmd(self, Document, output):
+    def getCmd(self, Document: Document, output: str):
         res = super().getCmd(Document, output)
         res += [
             "--format=" + self.format,
@@ -49,6 +50,6 @@ class ImageExporter(Exporter):
             res.append("--groups")
         return res
 
-    def export(self, Document, output):
+    def export(self, Document: Document, output: str):
         cmd = self.getCmd(Document, output)
         return super().export(cmd)

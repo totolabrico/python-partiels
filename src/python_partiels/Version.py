@@ -1,9 +1,9 @@
 class Version:
-    def __init__(self, values):
+    def __init__(self, values: list[int]):
         self.values = values
 
     @classmethod
-    def from_string(cls, value):
+    def from_string(cls, value: str):
         parts = value.split(".")
         if len(parts) != 3:
             cls.error("format is not correct")
@@ -18,11 +18,11 @@ class Version:
             return None
         return cls(numbers)
 
-    def isMoreRecent(self, other):
+    def isMoreRecent(self, other: 'Version'):
         if not isinstance(other, Version):
             raise TypeError("Expected a Version instance")
         return self.values > other.values
 
     @staticmethod
-    def error(msg):
+    def error(msg: str):
         print("Version error:", msg)
