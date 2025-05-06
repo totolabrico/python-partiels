@@ -54,5 +54,3 @@ def test_export():
     exports(partiels, document, dest)
     document = partiels.createDefaultDocument(audiofile, 'partiels')
     exports(partiels, document, dest)
-    document = partiels.createDocument(audiofile, '/home/toto/Bureau/IRCAM/Projects/factory.ptldoc')
-    exports(partiels, document, dest)
