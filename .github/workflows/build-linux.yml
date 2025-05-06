@@ -27,10 +27,13 @@ jobs:
 
     - name: Download Ircam Vamp Plugins
       run: |
-        wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/Ircam-Vamp-Plugins-Linux.zip
-        wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/2.1.0/VAX-Vamp-Plugin-v1.0.0-Linux.zip
-        wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/3.0.0/Crepe-Linux.tar.gz
-        wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/3.0.0/Whisper-Linux.tar.gz
+        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/ircam-vamp-plugins/releases | jq -r '.[0].tag_name')
+        wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/$TAG/Ircam-Vamp-Plugins-Linux.zip
+        wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/$TAG/VAX-Vamp-Plugin-v1.0.0-Linux.zip
+        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/crepe-vamp-plugins/releases | jq -r '.[0].tag_name')
+        wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/$TAG/Crepe-Linux.tar.gz
+        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/whisper-vamp-plugins/releases | jq -r '.[0].tag_name')
+        wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/$TAG/Whisper-Linux.tar.gz
    
     - name: Install Ircam Vamp Plugins
       run: |
