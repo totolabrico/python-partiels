@@ -57,10 +57,10 @@ class Partiels():
             return False
         return True
 
-    def createDocument(self, input:str = None, template:str):
+    def createDocument(self, input:str, template:str):
         return Document(input, template)
 
-    def createDefaultDocument(self, input:str = None, template:str):
+    def createDefaultDocument(self, input:str, template:str):
         return Document(input, template, True)
 
     def createJpegExporter(self, format:str = "jpeg", width:int = 1000, height:int = 800, groups:bool = False):
