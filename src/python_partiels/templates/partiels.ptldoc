@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document MiscModelVersion="131082" viewport_x="0" viewport_y="0" path="/home/toto/Bureau/IRCAM/Projects/partiels.ptldoc"
+          grid="1" autoresize="0" samplerate="44100.0" channels="2">
+
+  <layout value="bbf1edd8321a4ff7ba588546e7a83507"/>
+  <timeZoom MiscModelVersion="131082" globalRange_start="0.0" globalRange_end="234.7826303854875"
+            minimumLength="0.01160997732426304" visibleRange_start="0.0"
+            visibleRange_end="234.7826303854875">
+    <grid MiscModelVersion="131082" tickReference="0.0" mainTickInterval="0"
+          tickPowerBase="2.0" tickDivisionFactor="10.0"/>
+  </timeZoom>
+  <transport MiscModelVersion="131082" startPlayhead="0.0" looping="0" loopRange_start="0.0"
+             loopRange_end="0.0" stopAtLoopEnd="0" autoScroll="1" gain="1.0"
+             magnetize="0"/>
+  <groups MiscModelVersion="131082" identifier="bbf1edd8321a4ff7ba588546e7a83507"
+          name="Group 1" height="144" colour="0" expanded="1" referenceid="">
+    <layout value="6ba803dee17d4dd79933773712ccc29f"/>
+    <layout value="b26011d4cb854e7c883042a2a895af6d"/>
+    <layout value="5a3c32aa082e4c4497941002b80ef58d"/>
+    <zoom MiscModelVersion="131082" globalRange_start="0.0" globalRange_end="1.0"
+          minimumLength="0.0" visibleRange_start="0.0" visibleRange_end="1.0">
+      <grid MiscModelVersion="131082" tickReference="0.0" mainTickInterval="3"
+            tickPowerBase="2.0" tickDivisionFactor="5.0"/>
+    </zoom>
+  </groups>
+  <tracks MiscModelVersion="131082" identifier="6ba803dee17d4dd79933773712ccc29f"
+          name="Chord Partial" input="" sampleRate="48000.0" height="120"
+          font="Nunito Sans; 14.0 Regular" lineWidth="1.0" showInGroup="1"
+          sendViaOsc="0" zoomValueMode="1" zoomLogScale="0" zoomLink="1">
+    <file path="" commit="">
+      <args/>
+    </file>
+    <description name="Chord Partial" inputDomain="0" maker="Ircam" version="5"
+                 category="" details="The chord partial tracking analysis performed by Pm2&#10;Copyright 2024 Ircam. All rights reserved. Plugin by Pierre Guillot and Matthew Harris. Pm2 by Axel R&#246;bel and Fr&#233;d&#233;ric Cornu.">
+      <defaultState blockSize="64" stepSize="0" windowType="3">
+        <parameters key="amplitudethreshold" value="40.0"/>
+        <parameters key="fftoversampling" value="0.0"/>
+        <parameters key="maximumnumberofpartials" value="15.0"/>
+        <parameters key="partialid" value="1.0"/>
+        <parameters key="smoothingenvelopeattack" value="0.0"/>
+        <parameters key="smoothingenveloperelease" value="0.0"/>
+        <parameters key="useregionsduration" value="0.0"/>
+        <parameters key="windowoverlapping" value="1.0"/>
+        <parameters key="windowsize" value="23.21995544433594"/>
+        <parameters key="windowtype" value="1.0"/>
+      </defaultState>
+      <parameters>
+        <value identifier="windowtype" name="Window Type" description="The window type of the analysis"
+               unit="" minValue="0.0" maxValue="2.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0">
+          <valueNames value="Blackman"/>
+          <valueNames value="Hanning"/>
+          <valueNames value="Hamming"/>
+        </value>
+      </parameters>
+      <parameters>
+        <value identifier="windowsize" name="Window Size" description="The size of the window of the analysis"
+               unit="ms" minValue="0.3333333432674408" maxValue="10000.0" defaultValue="23.21995544433594"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="windowoverlapping" name="Window Overlapping" description="The overlapping of the window of the analysis"
+               unit="x" minValue="0.0" maxValue="5.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0">
+          <valueNames value="3"/>
+          <valueNames value="4"/>
+          <valueNames value="8"/>
+          <valueNames value="16"/>
+          <valueNames value="32"/>
+        </value>
+      </parameters>
+      <parameters>
+        <value identifier="fftoversampling" name="FFT Oversampling" description="The FFT oversampling of the analysis"
+               unit="x" minValue="0.0" maxValue="3.0" defaultValue="0.0" isQuantized="1"
+               quantizeStep="1.0">
+          <valueNames value="1"/>
+          <valueNames value="2"/>
+          <valueNames value="4"/>
+          <valueNames value="8"/>
+        </value>
+      </parameters>
+      <parameters>
+        <value identifier="maximumnumberofpartials" name="Maximum Number of Partials"
+               description="The maximum number of partials which will be detected in the analysis"
+               unit="" minValue="1.0" maxValue="100.0" defaultValue="15.0" isQuantized="1"
+               quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="partialid" name="Partial ID" description="The ID of the partial to track"
+               unit="" minValue="1.0" maxValue="100.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="amplitudethreshold" name="Amplitude Threshold" description="The maximum amplitude attenuation"
+               unit="dB" minValue="0.0" maxValue="120.0" defaultValue="40.0"
+               isQuantized="1" quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="smoothingenvelopeattack" name="Smoothing Envelope Attack"
+               description="The duration of the attack used in the partial smoothing envelope"
+               unit="ms" minValue="0.0" maxValue="1000.0" defaultValue="0.0"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="smoothingenveloperelease" name="Smoothing Envelope Release"
+               description="The duration of the release used in the partial smoothing envelope"
+               unit="ms" minValue="0.0" maxValue="1000.0" defaultValue="0.0"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="useregionsduration" name="Use Regions Duration" description="Use the regions duration to compute the chords"
+               unit="" minValue="0.0" maxValue="1.0" defaultValue="0.0" isQuantized="1"
+               quantizeStep="1.0"/>
+      </parameters>
+      <output identifier="frequency" name="Frequency" description="The frequency of the partial"
+              unit="Hz" hasFixedBinCount="1" binCount="1" hasKnownExtents="1"
+              minValue="0.0" maxValue="22050.0" isQuantized="0" quantizeStep="0.0"
+              sampleType="2" sampleRate="0.0" hasDuration="1"/>
+      <extraOutputs>
+        <value identifier="amplitude" name="Amplitude" description="The amplitude of the partial"
+               unit="" hasKnownExtents="1" minValue="0.0" maxValue="1.0" isQuantized="0"
+               quantizeStep="0.0"/>
+      </extraOutputs>
+      <extraOutputs>
+        <value identifier="phase" name="Phase" description="The phase of the partial"
+               unit="rad" hasKnownExtents="1" minValue="-3.141592741012573"
+               maxValue="3.141592741012573" isQuantized="0" quantizeStep="0.0"/>
+      </extraOutputs>
+      <input identifier="frequency" name="Chord region" description="Time regions of chords estimated from input signal"
+             unit="" hasFixedBinCount="1" binCount="0" hasKnownExtents="0"
+             minValue="0.0" maxValue="0.0" isQuantized="0" quantizeStep="0.0"
+             sampleType="2" sampleRate="0.0" hasDuration="0"/>
+    </description>
+    <key identifier="pm2:pm2chordpartialtracking" feature="frequency"/>
+    <state blockSize="64" stepSize="64" windowType="3">
+      <parameters key="amplitudethreshold" value="40.0"/>
+      <parameters key="fftoversampling" value="0.0"/>
+      <parameters key="maximumnumberofpartials" value="15.0"/>
+      <parameters key="partialid" value="1.0"/>
+      <parameters key="smoothingenvelopeattack" value="0.0"/>
+      <parameters key="smoothingenveloperelease" value="0.0"/>
+      <parameters key="useregionsduration" value="0.0"/>
+      <parameters key="windowoverlapping" value="1.0"/>
+      <parameters key="windowsize" value="23.21995544433594"/>
+      <parameters key="windowtype" value="1.0"/>
+    </state>
+    <colours map="7" background="0" foreground="ff7e7a7d" duration="667e7a7d"
+             text="0" shadow="0"/>
+    <labelLayout position="12.0" justification="0"/>
+    <channelsLayout value="1"/>
+    <channelsLayout value="1"/>
+    <valueZoom MiscModelVersion="131082" globalRange_start="0.0" globalRange_end="22050.0"
+               minimumLength="1.192092895507812e-7" visibleRange_start="0.0"
+               visibleRange_end="22050.0">
+      <grid MiscModelVersion="131082" tickReference="0.0" mainTickInterval="3"
+            tickPowerBase="2.0" tickDivisionFactor="5.0"/>
+    </valueZoom>
+    <binZoom MiscModelVersion="131082" globalRange_start="0.0" globalRange_end="0.0"
+             minimumLength="0.0" visibleRange_start="0.0" visibleRange_end="0.0">
+      <grid MiscModelVersion="131082" tickReference="0.0" mainTickInterval="3"
+            tickPowerBase="2.0" tickDivisionFactor="5.0"/>
+    </binZoom>
+  </tracks>
+  <tracks MiscModelVersion="131082" identifier="b26011d4cb854e7c883042a2a895af6d"
+          name="Harmonic Partial" input="" sampleRate="48000.0" height="120"
+          font="Nunito Sans; 14.0 Regular" lineWidth="1.0" showInGroup="1"
+          sendViaOsc="0" zoomValueMode="1" zoomLogScale="0" zoomLink="1">
+    <file path="" commit="">
+      <args/>
+    </file>
+    <description name="Harmonic Partial" inputDomain="0" maker="Ircam" version="5"
+                 category="PartialTracking" details="The harmonic (sinusoidal) partial tracking analysis performed by Pm2&#10;Copyright 2024 Ircam. All rights reserved. Plugin by Pierre Guillot and Matthew Harris. Pm2 by Axel R&#246;bel and Fr&#233;d&#233;ric Cornu.">
+      <defaultState blockSize="64" stepSize="0" windowType="3">
+        <parameters key="amplitudethreshold" value="40.0"/>
+        <parameters key="fftoversampling" value="0.0"/>
+        <parameters key="maximumnumberofpartials" value="15.0"/>
+        <parameters key="partialid" value="1.0"/>
+        <parameters key="partialseevebandwidth" value="0.5"/>
+        <parameters key="smoothingenvelopeattack" value="0.0"/>
+        <parameters key="smoothingenveloperelease" value="0.0"/>
+        <parameters key="windowoverlapping" value="1.0"/>
+        <parameters key="windowsize" value="23.21995544433594"/>
+        <parameters key="windowtype" value="1.0"/>
+      </defaultState>
+      <parameters>
+        <value identifier="windowtype" name="Window Type" description="The window type of the analysis"
+               unit="" minValue="0.0" maxValue="2.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0">
+          <valueNames value="Blackman"/>
+          <valueNames value="Hanning"/>
+          <valueNames value="Hamming"/>
+        </value>
+      </parameters>
+      <parameters>
+        <value identifier="windowsize" name="Window Size" description="The size of the window of the analysis"
+               unit="ms" minValue="0.3333333432674408" maxValue="10000.0" defaultValue="23.21995544433594"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="windowoverlapping" name="Window Overlapping" description="The overlapping of the window of the analysis"
+               unit="x" minValue="0.0" maxValue="5.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0">
+          <valueNames value="3"/>
+          <valueNames value="4"/>
+          <valueNames value="8"/>
+          <valueNames value="16"/>
+          <valueNames value="32"/>
+        </value>
+      </parameters>
+      <parameters>
+        <value identifier="fftoversampling" name="FFT Oversampling" description="The FFT oversampling of the analysis"
+               unit="x" minValue="0.0" maxValue="3.0" defaultValue="0.0" isQuantized="1"
+               quantizeStep="1.0">
+          <valueNames value="1"/>
+          <valueNames value="2"/>
+          <valueNames value="4"/>
+          <valueNames value="8"/>
+        </value>
+      </parameters>
+      <parameters>
+        <value identifier="maximumnumberofpartials" name="Maximum Number of Partials"
+               description="The maximum number of partials which will be detected in the analysis"
+               unit="" minValue="1.0" maxValue="100.0" defaultValue="15.0" isQuantized="1"
+               quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="partialid" name="Partial ID" description="The ID of the partial to track"
+               unit="" minValue="1.0" maxValue="100.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="amplitudethreshold" name="Amplitude Threshold" description="The maximum amplitude attenuation"
+               unit="dB" minValue="0.0" maxValue="120.0" defaultValue="40.0"
+               isQuantized="1" quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="smoothingenvelopeattack" name="Smoothing Envelope Attack"
+               description="The duration of the attack used in the partial smoothing envelope"
+               unit="ms" minValue="0.0" maxValue="1000.0" defaultValue="0.0"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="smoothingenveloperelease" name="Smoothing Envelope Release"
+               description="The duration of the release used in the partial smoothing envelope"
+               unit="ms" minValue="0.0" maxValue="1000.0" defaultValue="0.0"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="partialseevebandwidth" name="Partial Seeve Bandwidth"
+               description="The bandwidth of the partial seeve relative to the F0 value."
+               unit="" minValue="0.0" maxValue="1.0" defaultValue="0.5" isQuantized="1"
+               quantizeStep="0.009999999776482582"/>
+      </parameters>
+      <output identifier="frequency" name="Frequency" description="The frequency of the partial"
+              unit="Hz" hasFixedBinCount="1" binCount="1" hasKnownExtents="1"
+              minValue="0.0" maxValue="22050.0" isQuantized="0" quantizeStep="0.0"
+              sampleType="2" sampleRate="0.0" hasDuration="0"/>
+      <extraOutputs>
+        <value identifier="amplitude" name="Amplitude" description="The amplitude of the partial"
+               unit="" hasKnownExtents="1" minValue="0.0" maxValue="1.0" isQuantized="0"
+               quantizeStep="0.0"/>
+      </extraOutputs>
+      <extraOutputs>
+        <value identifier="phase" name="Phase" description="The phase of the partial"
+               unit="rad" hasKnownExtents="1" minValue="-3.141592741012573"
+               maxValue="3.141592741012573" isQuantized="0" quantizeStep="0.0"/>
+      </extraOutputs>
+      <input identifier="frequency" name="Pitch Estimation" description="Pitch estimated from the input signal"
+             unit="Hz" hasFixedBinCount="1" binCount="1" hasKnownExtents="1"
+             minValue="0.0" maxValue="22050.0" isQuantized="0" quantizeStep="0.0"
+             sampleType="2" sampleRate="0.0" hasDuration="0"/>
+    </description>
+    <key identifier="pm2:pm2harmonicpartialtracking" feature="frequency"/>
+    <state blockSize="64" stepSize="64" windowType="3">
+      <parameters key="amplitudethreshold" value="40.0"/>
+      <parameters key="fftoversampling" value="0.0"/>
+      <parameters key="maximumnumberofpartials" value="15.0"/>
+      <parameters key="partialid" value="1.0"/>
+      <parameters key="partialseevebandwidth" value="0.5"/>
+      <parameters key="smoothingenvelopeattack" value="0.0"/>
+      <parameters key="smoothingenveloperelease" value="0.0"/>
+      <parameters key="windowoverlapping" value="1.0"/>
+      <parameters key="windowsize" value="23.21995544433594"/>
+      <parameters key="windowtype" value="1.0"/>
+    </state>
+    <colours map="7" background="0" foreground="ff7e7a7d" duration="667e7a7d"
+             text="0" shadow="0"/>
+    <labelLayout position="12.0" justification="0"/>
+    <channelsLayout value="1"/>
+    <channelsLayout value="1"/>
+    <valueZoom MiscModelVersion="131082" globalRange_start="0.0" globalRange_end="22050.0"
+               minimumLength="1.192092895507812e-7" visibleRange_start="0.0"
+               visibleRange_end="22050.0">
+      <grid MiscModelVersion="131082" tickReference="0.0" mainTickInterval="3"
+            tickPowerBase="2.0" tickDivisionFactor="5.0"/>
+    </valueZoom>
+    <binZoom MiscModelVersion="131082" globalRange_start="0.0" globalRange_end="0.0"
+             minimumLength="0.0" visibleRange_start="0.0" visibleRange_end="0.0">
+      <grid MiscModelVersion="131082" tickReference="0.0" mainTickInterval="3"
+            tickPowerBase="2.0" tickDivisionFactor="5.0"/>
+    </binZoom>
+  </tracks>
+  <tracks MiscModelVersion="131082" identifier="5a3c32aa082e4c4497941002b80ef58d"
+          name="Inharmonic Partial" input="" sampleRate="48000.0" height="120"
+          font="Nunito Sans; 14.0 Regular" lineWidth="1.0" showInGroup="1"
+          sendViaOsc="0" zoomValueMode="1" zoomLogScale="0" zoomLink="1">
+    <file path="" commit="">
+      <args/>
+    </file>
+    <description name="Inharmonic Partial" inputDomain="0" maker="Ircam" version="5"
+                 category="PartialTracking" details="The inharmonic partial tracking analysis performed by Pm2&#10;Copyright 2024 Ircam. All rights reserved. Plugin by Pierre Guillot and Matthew Harris. Pm2 by Axel R&#246;bel and Fr&#233;d&#233;ric Cornu.">
+      <defaultState blockSize="64" stepSize="0" windowType="3">
+        <parameters key="amplitudethreshold" value="40.0"/>
+        <parameters key="constantfrequencydeviation" value="0.0"/>
+        <parameters key="fftoversampling" value="0.0"/>
+        <parameters key="maximumnumberofpartials" value="15.0"/>
+        <parameters key="partialid" value="1.0"/>
+        <parameters key="relativeamplitudedeviation" value="50.0"/>
+        <parameters key="relativefrequencydeviation" value="20.00001525878906"/>
+        <parameters key="smoothingenvelopeattack" value="0.0"/>
+        <parameters key="smoothingenveloperelease" value="0.0"/>
+        <parameters key="smoothingmaximumfrequencydifference" value="49.99619293212891"/>
+        <parameters key="smoothingmaximumtimedifference" value="17.5"/>
+        <parameters key="smoothingminimumpartialduration" value="8.699999809265137"/>
+        <parameters key="sourcepartialneighbours" value="1.0"/>
+        <parameters key="targetpartialneighbours" value="3.0"/>
+        <parameters key="windowoverlapping" value="1.0"/>
+        <parameters key="windowsize" value="23.21995544433594"/>
+        <parameters key="windowtype" value="1.0"/>
+      </defaultState>
+      <parameters>
+        <value identifier="windowtype" name="Window Type" description="The window type of the analysis"
+               unit="" minValue="0.0" maxValue="2.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0">
+          <valueNames value="Blackman"/>
+          <valueNames value="Hanning"/>
+          <valueNames value="Hamming"/>
+        </value>
+      </parameters>
+      <parameters>
+        <value identifier="windowsize" name="Window Size" description="The size of the window of the analysis"
+               unit="ms" minValue="0.3333333432674408" maxValue="10000.0" defaultValue="23.21995544433594"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="windowoverlapping" name="Window Overlapping" description="The overlapping of the window of the analysis"
+               unit="x" minValue="0.0" maxValue="5.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0">
+          <valueNames value="3"/>
+          <valueNames value="4"/>
+          <valueNames value="8"/>
+          <valueNames value="16"/>
+          <valueNames value="32"/>
+        </value>
+      </parameters>
+      <parameters>
+        <value identifier="fftoversampling" name="FFT Oversampling" description="The FFT oversampling of the analysis"
+               unit="x" minValue="0.0" maxValue="3.0" defaultValue="0.0" isQuantized="1"
+               quantizeStep="1.0">
+          <valueNames value="1"/>
+          <valueNames value="2"/>
+          <valueNames value="4"/>
+          <valueNames value="8"/>
+        </value>
+      </parameters>
+      <parameters>
+        <value identifier="maximumnumberofpartials" name="Maximum Number of Partials"
+               description="The maximum number of partials which will be detected in the analysis"
+               unit="" minValue="1.0" maxValue="100.0" defaultValue="15.0" isQuantized="1"
+               quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="partialid" name="Partial ID" description="The ID of the partial to track"
+               unit="" minValue="1.0" maxValue="100.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="amplitudethreshold" name="Amplitude Threshold" description="The maximum amplitude attenuation"
+               unit="dB" minValue="0.0" maxValue="120.0" defaultValue="40.0"
+               isQuantized="1" quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="smoothingenvelopeattack" name="Smoothing Envelope Attack"
+               description="The duration of the attack used in the partial smoothing envelope"
+               unit="ms" minValue="0.0" maxValue="1000.0" defaultValue="0.0"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="smoothingenveloperelease" name="Smoothing Envelope Release"
+               description="The duration of the release used in the partial smoothing envelope"
+               unit="ms" minValue="0.0" maxValue="1000.0" defaultValue="0.0"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="relativefrequencydeviation" name="Relative Frequency Deviation"
+               description="The maximum relative frequency difference between two peaks"
+               unit="cents" minValue="0.0" maxValue="1200.0" defaultValue="20.00001525878906"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="constantfrequencydeviation" name="Constant Frequency Deviation"
+               description="The maximum constant frequency difference between two peaks"
+               unit="Hz" minValue="0.0" maxValue="96000.0" defaultValue="0.0"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="relativeamplitudedeviation" name="Relative Amplitude Deviation"
+               description="The maximum relative amplitude difference between two peaks"
+               unit="%" minValue="0.0" maxValue="100.0" defaultValue="50.0"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="sourcepartialneighbours" name="Source Partial Neighbours"
+               description="The number of possible connectable source neighbour peaks"
+               unit="" minValue="0.0" maxValue="10.0" defaultValue="1.0" isQuantized="1"
+               quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="targetpartialneighbours" name="Target Partial Neighbours"
+               description="The number of possible connectable target neighbour peaks"
+               unit="" minValue="0.0" maxValue="10.0" defaultValue="3.0" isQuantized="1"
+               quantizeStep="1.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="smoothingmaximumtimedifference" name="Smoothing Maximum Time Difference"
+               description="The maximum time difference between two connectable partials"
+               unit="ms" minValue="0.0" maxValue="1000.0" defaultValue="17.5"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="smoothingmaximumfrequencydifference" name="Smoothing Maximum Frequency Difference"
+               description="The maximum frequency difference between two connectable partials"
+               unit="cents" minValue="0.0" maxValue="1200.0" defaultValue="49.99619293212891"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <parameters>
+        <value identifier="smoothingminimumpartialduration" name="Smoothing Minimum Partial Duration"
+               description="The minimum lifetime of a partial. Partials below this threshold won't be taken into account"
+               unit="ms" minValue="0.0" maxValue="1000.0" defaultValue="8.699999809265137"
+               isQuantized="0" quantizeStep="0.0"/>
+      </parameters>
+      <output identifier="frequency" name="Frequency" description="The frequency of the partial"
+              unit="Hz" hasFixedBinCount="1" binCount="1" hasKnownExtents="1"
+              minValue="0.0" maxValue="22050.0" isQuantized="0" quantizeStep="0.0"
+              sampleType="2" sampleRate="0.0" hasDuration="0"/>
+      <extraOutputs>
+        <value identifier="amplitude" name="Amplitude" description="The amplitude of the partial"
+               unit="" hasKnownExtents="1" minValue="0.0" maxValue="1.0" isQuantized="0"
+               quantizeStep="0.0"/>
+      </extraOutputs>
+      <extraOutputs>
+        <value identifier="phase" name="Phase" description="The phase of the partial"
+               unit="rad" hasKnownExtents="1" minValue="-3.141592741012573"
+               maxValue="3.141592741012573" isQuantized="0" quantizeStep="0.0"/>
+      </extraOutputs>
+      <input identifier="" name="" description="" unit="" hasFixedBinCount="0"
+             binCount="0" hasKnownExtents="0" minValue="0.0" maxValue="0.0"
+             isQuantized="0" quantizeStep="0.0" sampleType="0" sampleRate="0.0"
+             hasDuration="0"/>
+    </description>
+    <key identifier="pm2:pm2inharmonicpartialtracking" feature="frequency"/>
+    <state blockSize="64" stepSize="64" windowType="3">
+      <parameters key="amplitudethreshold" value="40.0"/>
+      <parameters key="constantfrequencydeviation" value="0.0"/>
+      <parameters key="fftoversampling" value="0.0"/>
+      <parameters key="maximumnumberofpartials" value="15.0"/>
+      <parameters key="partialid" value="1.0"/>
+      <parameters key="relativeamplitudedeviation" value="50.0"/>
+      <parameters key="relativefrequencydeviation" value="20.00001525878906"/>
+      <parameters key="smoothingenvelopeattack" value="0.0"/>
+      <parameters key="smoothingenveloperelease" value="0.0"/>
+      <parameters key="smoothingmaximumfrequencydifference" value="49.99619293212891"/>
+      <parameters key="smoothingmaximumtimedifference" value="17.5"/>
+      <parameters key="smoothingminimumpartialduration" value="8.699999809265137"/>
+      <parameters key="sourcepartialneighbours" value="1.0"/>
+      <parameters key="targetpartialneighbours" value="3.0"/>
+      <parameters key="windowoverlapping" value="1.0"/>
+      <parameters key="windowsize" value="23.21995544433594"/>
+      <parameters key="windowtype" value="1.0"/>
+    </state>
+    <colours map="7" background="0" foreground="ff7e7a7d" duration="667e7a7d"
+             text="0" shadow="0"/>
+    <labelLayout position="12.0" justification="0"/>
+    <channelsLayout value="1"/>
+    <channelsLayout value="1"/>
+    <valueZoom MiscModelVersion="131082" globalRange_start="0.0" globalRange_end="22050.0"
+               minimumLength="1.192092895507812e-7" visibleRange_start="0.0"
+               visibleRange_end="22050.0">
+      <grid MiscModelVersion="131082" tickReference="0.0" mainTickInterval="3"
+            tickPowerBase="2.0" tickDivisionFactor="5.0"/>
+    </valueZoom>
+    <binZoom MiscModelVersion="131082" globalRange_start="0.0" globalRange_end="0.0"
+             minimumLength="0.0" visibleRange_start="0.0" visibleRange_end="0.0">
+      <grid MiscModelVersion="131082" tickReference="0.0" mainTickInterval="3"
+            tickPowerBase="2.0" tickDivisionFactor="5.0"/>
+    </binZoom>
+  </tracks>
+</document>
