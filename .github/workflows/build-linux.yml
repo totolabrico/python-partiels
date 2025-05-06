@@ -18,7 +18,7 @@ jobs:
     - name: Download and extract Partiels binary
       run: |
         mkdir $HOME/vamp
-        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/Partiels/releases | jq -r '.[0].tag_name')
+        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/Partiels/releases | grep tag_name | head -n 1 | cut -d '"' -f 4)
         wget https://github.com/Ircam-Partiels/Partiels/releases/download/$TAG/Partiels-Linux.tar.gz
         tar -xzf Partiels-Linux.tar.gz
         sh Partiels/Partiels-install.sh
@@ -27,12 +27,12 @@ jobs:
 
     - name: Download Ircam Vamp Plugins
       run: |
-        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/ircam-vamp-plugins/releases | jq -r '.[0].tag_name')
+        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/ircam-vamp-plugins/releases | grep tag_name | head -n 1 | cut -d '"' -f 4)
         wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/$TAG/Ircam-Vamp-Plugins-Linux.zip
         wget https://github.com/Ircam-Partiels/ircam-vamp-plugins/releases/download/$TAG/VAX-Vamp-Plugin-v1.0.0-Linux.zip
-        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/crepe-vamp-plugins/releases | jq -r '.[0].tag_name')
+        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/crepe-vamp-plugin/releases | grep tag_name | head -n 1 | cut -d '"' -f 4)
         wget https://github.com/Ircam-Partiels/crepe-vamp-plugin/releases/download/$TAG/Crepe-Linux.tar.gz
-        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/whisper-vamp-plugins/releases | jq -r '.[0].tag_name')
+        TAG=$(curl -s https://api.github.com/repos/Ircam-Partiels/whisper-vamp-plugin/releases | grep tag_name | head -n 1 | cut -d '"' -f 4)
         wget https://github.com/Ircam-Partiels/whisper-vamp-plugin/releases/download/$TAG/Whisper-Linux.tar.gz
    
     - name: Install Ircam Vamp Plugins
