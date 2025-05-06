@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document &#8212; python-partiels 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for Document</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;A class for Document&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pkg_resources</span>
+
+<div class="viewcode-block" id="Document"><a class="viewcode-back" href="../Document.html#Document.Document">[docs]</a><span class="k">class</span> <span class="nc">Document</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">template</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">isDefault</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setInput</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setTemplate</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">isDefault</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Document.setInput"><a class="viewcode-back" href="../Document.html#Document.Document.setInput">[docs]</a>    <span class="k">def</span> <span class="nf">setInput</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Set the audiofile input path</span>
+<span class="sd">            Args:</span>
+<span class="sd">                path (str): absolute ot relative path for the audiofile</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">path</span></div>
+
+<div class="viewcode-block" id="Document.setTemplate"><a class="viewcode-back" href="../Document.html#Document.Document.setTemplate">[docs]</a>    <span class="k">def</span> <span class="nf">setTemplate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">isDefault</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Set the Partiels&#39;s template path</span>
+<span class="sd">            Args:</span>
+<span class="sd">                path (str): absolute ot relative path for the audiofile</span>
+<span class="sd">                isDefault (bool): if True the path is used to select a default template: factory, partiels, supervp </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">isDefault</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">resource_filename</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;templates/&#39;</span><span class="o">+</span> <span class="n">name</span> <span class="o">+</span><span class="s1">&#39;.ptldoc&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">template</span> <span class="o">=</span> <span class="n">name</span></div>
+
+<div class="viewcode-block" id="Document.getArgs"><a class="viewcode-back" href="../Document.html#Document.Document.getArgs">[docs]</a>    <span class="k">def</span> <span class="nf">getArgs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s2">&quot;--input=&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">,</span>
+            <span class="s2">&quot;--template=&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">template</span><span class="p">,</span>
+        <span class="p">]</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">python-partiels</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">src</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Thomas Barbé.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

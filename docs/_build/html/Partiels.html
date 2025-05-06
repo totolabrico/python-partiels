@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Partiels module &#8212; python-partiels 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Document module" href="Document.html" />
+    <link rel="prev" title="src" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-python_partiels.Partiels">
+<span id="partiels-module"></span><h1>Partiels module<a class="headerlink" href="#module-python_partiels.Partiels" title="Permalink to this heading">¶</a></h1>
+<p>A main class for Partiels Wrapper</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">python_partiels.Partiels.</span></span><span class="sig-name descname"><span class="pre">Partiels</span></span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.checkVersion">
+<span class="sig-name descname"><span class="pre">checkVersion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.checkVersion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.checkVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the wrapper match Partiels’s version</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createCsvExporter">
+<span class="sig-name descname"><span class="pre">createCsvExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nogrids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">','</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createCsvExporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createCsvExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a CsvExporter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nogrids</strong> (<em>bool</em>) – if True ignores the export of the grid tracks</p></li>
+<li><p><strong>header</strong> (<em>bool</em>) – if True includes header row before the data rows</p></li>
+<li><p><strong>separator</strong> (<em>char</em>) – Defines the separator character between columns (default is ‘,’)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createCueExporter">
+<span class="sig-name descname"><span class="pre">createCueExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nogrids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createCueExporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createCueExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a CueExporter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nogrids</strong> (<em>bool</em>) – if True ignores the export of the grid tracks</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createDefaultDocument">
+<span class="sig-name descname"><span class="pre">createDefaultDocument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createDefaultDocument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createDefaultDocument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Document with a default template</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> (<em>str</em>) – relative or absolute path of the audiofile</p></li>
+<li><p><strong>template</strong> (<em>str</em>) – name of the default template. Options ar factory, supervp or partiels</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createDocument">
+<span class="sig-name descname"><span class="pre">createDocument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createDocument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createDocument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Document</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> (<em>str</em>) – relative or absolute path of the audiofile</p></li>
+<li><p><strong>template</strong> (<em>str</em>) – relative or absolute path of the template (ptldoc)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createJpegExporter">
+<span class="sig-name descname"><span class="pre">createJpegExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createJpegExporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createJpegExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a JpegExporter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> (<em>int</em>) – the width of the target jpeg image</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – the height of the target jpeg image</p></li>
+<li><p><strong>groups</strong> (<em>bool</em>) – if True exports the images of group and not the image of the tracks</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createJsonExporter">
+<span class="sig-name descname"><span class="pre">createJsonExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nogrids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createJsonExporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createJsonExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a JsonExporter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nogrids</strong> (<em>bool</em>) – if True ignores the export of the grid tracks</p></li>
+<li><p><strong>description</strong> (<em>bool</em>) – if True includes the plugin description</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createLabExporter">
+<span class="sig-name descname"><span class="pre">createLabExporter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createLabExporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createLabExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a LabExporter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createPngExporter">
+<span class="sig-name descname"><span class="pre">createPngExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createPngExporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createPngExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a PngExporter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>width</strong> (<em>int</em>) – the width of the target png image</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – the height of the target png image</p></li>
+<li><p><strong>groups</strong> (<em>bool</em>) – if True exports the images of group and not the image of the tracks</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createReaperExporter">
+<span class="sig-name descname"><span class="pre">createReaperExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reaperType</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'region'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createReaperExporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createReaperExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a ReaperExporter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>reaperType</strong> (<em>str</em>) – Defines the type of the reaper format: ‘marker’ or ‘region’, default is ‘region’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.createSdifExporter">
+<span class="sig-name descname"><span class="pre">createSdifExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.createSdifExporter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.createSdifExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a SdifExporter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame</strong> (<em>str</em>) – &lt;framesignature&gt; Defines the 4 characters frame signaturer</p></li>
+<li><p><strong>matrix</strong> (<em>str</em>) – &lt;matrixsignature&gt; Defines the 4 characters matrix signaturer</p></li>
+<li><p><strong>colname</strong> (<em>str</em>) – Defines the name of the column</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.findExecPath">
+<span class="sig-name descname"><span class="pre">findExecPath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.findExecPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.findExecPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find Partiels’s executable path</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.getExecPath">
+<span class="sig-name descname"><span class="pre">getExecPath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.getExecPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.getExecPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the executable path of Partiels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.setExecPath">
+<span class="sig-name descname"><span class="pre">setExecPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.setExecPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.setExecPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the path for Partiels’s executable</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – relative or absolute path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="python_partiels.Partiels.Partiels.setVampPath">
+<span class="sig-name descname"><span class="pre">setVampPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/python_partiels/Partiels.html#Partiels.setVampPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#python_partiels.Partiels.Partiels.setVampPath" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">python-partiels</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Partiels module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Document.html">Document module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">src</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">src</a></li>
+      <li>Next: <a href="Document.html" title="next chapter">Document module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Thomas Barbé.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Partiels.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

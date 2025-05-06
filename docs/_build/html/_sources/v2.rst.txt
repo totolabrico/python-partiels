@@ -1,0 +1,7 @@
+v2 module
+=========
+
+.. automodule:: v2
+   :members:
+   :undoc-members:
+   :show-inheritance:

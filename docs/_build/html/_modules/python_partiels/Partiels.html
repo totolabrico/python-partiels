@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>python_partiels.Partiels &#8212; python-partiels 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for python_partiels.Partiels</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;A main class for Partiels Wrapper&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="c1">#from lxml import etree</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">from</span> <span class="nn">.Version</span> <span class="kn">import</span> <span class="n">Version</span>
+<span class="kn">from</span> <span class="nn">.Document</span> <span class="kn">import</span> <span class="n">Document</span>
+<span class="kn">from</span> <span class="nn">.Exporters.ImageExporter</span> <span class="kn">import</span> <span class="n">ImageExporter</span>
+<span class="kn">from</span> <span class="nn">.Exporters.TextExporter</span> <span class="kn">import</span> <span class="n">CsvExporter</span><span class="p">,</span> <span class="n">JsonExporter</span><span class="p">,</span> <span class="n">CueExporter</span>
+<span class="kn">from</span> <span class="nn">.Exporters.SdifExporter</span> <span class="kn">import</span> <span class="n">SdifExporter</span>
+<span class="kn">from</span> <span class="nn">.Exporters.ReaperExporter</span> <span class="kn">import</span> <span class="n">ReaperExporter</span>
+<span class="kn">from</span> <span class="nn">.Exporters.LabExporter</span> <span class="kn">import</span> <span class="n">LabExporter</span>
+
+<span class="n">PARTIELS_HANDLED_VERSION_MIN</span> <span class="o">=</span> <span class="s2">&quot;2.0.9&quot;</span>
+<span class="n">PARTIELS_HANDLED_VERSION_MAX</span> <span class="o">=</span> <span class="s2">&quot;2.0.10&quot;</span>
+
+<div class="viewcode-block" id="Partiels"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels">[docs]</a><span class="k">class</span> <span class="nc">Partiels</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setExecPath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">findExecPath</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isHandledVersion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkVersion</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Partiels.getExecPath"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.getExecPath">[docs]</a>    <span class="k">def</span> <span class="nf">getExecPath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the executable path of Partiels&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span></div>
+
+<div class="viewcode-block" id="Partiels.setExecPath"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.setExecPath">[docs]</a>    <span class="k">def</span> <span class="nf">setExecPath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the path for Partiels&#39;s executable</span>
+<span class="sd">        </span>
+<span class="sd">            Args:</span>
+<span class="sd">                path (str): relative or absolute path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span> <span class="o">=</span> <span class="n">path</span></div>
+
+<div class="viewcode-block" id="Partiels.setVampPath"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.setVampPath">[docs]</a>    <span class="k">def</span> <span class="nf">setVampPath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;VAMP_PATH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span></div>
+
+<div class="viewcode-block" id="Partiels.findExecPath"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.findExecPath">[docs]</a>    <span class="k">def</span> <span class="nf">findExecPath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Find Partiels&#39;s executable path&quot;</span>
+        <span class="n">exec_name</span> <span class="o">=</span> <span class="s2">&quot;Partiels&quot;</span>
+        <span class="n">exec_path</span> <span class="o">=</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="n">exec_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">exec_path</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">exec_path</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Executable &#39;</span><span class="si">{</span><span class="n">exec_name</span><span class="si">}</span><span class="s2">&#39; non trouvé dans PATH.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Partiels.checkVersion"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.checkVersion">[docs]</a>    <span class="k">def</span> <span class="nf">checkVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if the wrapper match Partiels&#39;s version&quot;&quot;&quot;</span>
+
+        <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">]</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">Version</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; v&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="nb">min</span> <span class="o">=</span> <span class="n">Version</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">PARTIELS_HANDLED_VERSION_MIN</span><span class="p">)</span>
+        <span class="nb">max</span> <span class="o">=</span> <span class="n">Version</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">PARTIELS_HANDLED_VERSION_MAX</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error parsing Partiels version&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">version</span><span class="o">.</span><span class="n">isMoreRecent</span><span class="p">(</span><span class="nb">max</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Version of Partiel is too recent for the wrapper&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="nb">min</span><span class="o">.</span><span class="n">isMoreRecent</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Version of Partiel is too old for the wrapper&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Partiels.createDocument"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createDocument">[docs]</a>    <span class="k">def</span> <span class="nf">createDocument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">template</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a Document</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                input (str): relative or absolute path of the audiofile</span>
+<span class="sd">                template (str): relative or absolute path of the template (ptldoc)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Document</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">template</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createDefaultDocument"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createDefaultDocument">[docs]</a>    <span class="k">def</span> <span class="nf">createDefaultDocument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">template</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a Document with a default template</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                input (str): relative or absolute path of the audiofile</span>
+<span class="sd">                template (str): name of the default template. Options ar factory, supervp or partiels</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Document</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createJpegExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createJpegExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createJpegExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">800</span><span class="p">,</span> <span class="n">groups</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a JpegExporter</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                width (int): the width of the target jpeg image</span>
+<span class="sd">                height (int): the height of the target jpeg image</span>
+<span class="sd">                groups (bool): if True exports the images of group and not the image of the tracks </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ImageExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="s2">&quot;jpeg&quot;</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createPngExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createPngExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createPngExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">800</span><span class="p">,</span> <span class="n">groups</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a PngExporter</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                width (int): the width of the target png image</span>
+<span class="sd">                height (int): the height of the target png image</span>
+<span class="sd">                groups (bool): if True exports the images of group and not the image of the tracks </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ImageExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createCsvExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createCsvExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createCsvExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nogrids</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">separator</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a CsvExporter</span>
+<span class="sd">        </span>
+<span class="sd">            Args:</span>
+<span class="sd">                nogrids (bool): if True ignores the export of the grid tracks</span>
+<span class="sd">                header (bool): if True includes header row before the data rows</span>
+<span class="sd">                separator (char): Defines the separator character between columns (default is &#39;,&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">CsvExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">nogrids</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">separator</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createJsonExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createJsonExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createJsonExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nogrids</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a JsonExporter</span>
+<span class="sd">        </span>
+<span class="sd">            Args:</span>
+<span class="sd">                nogrids (bool): if True ignores the export of the grid tracks</span>
+<span class="sd">                description (bool): if True includes the plugin description </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">JsonExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">nogrids</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createCueExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createCueExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createCueExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nogrids</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a CueExporter</span>
+<span class="sd">        </span>
+<span class="sd">            Args:</span>
+<span class="sd">                nogrids (bool): if True ignores the export of the grid tracks</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">CueExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">nogrids</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createSdifExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createSdifExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createSdifExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">colname</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a SdifExporter</span>
+<span class="sd">        </span>
+<span class="sd">            Args:</span>
+<span class="sd">                frame (str): &lt;framesignature&gt; Defines the 4 characters frame signaturer</span>
+<span class="sd">                matrix (str): &lt;matrixsignature&gt; Defines the 4 characters matrix signaturer</span>
+<span class="sd">                colname (str): Defines the name of the column</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">SdifExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">colname</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createReaperExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createReaperExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createReaperExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaperType</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;region&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a ReaperExporter</span>
+<span class="sd">        </span>
+<span class="sd">            Args:</span>
+<span class="sd">                reaperType (str): Defines the type of the reaper format: &#39;marker&#39; or &#39;region&#39;, default is &#39;region&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ReaperExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">reaperType</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createLabExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createLabExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createLabExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a LabExporter&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">LabExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">)</span></div></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">python-partiels</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">src</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2025, Thomas Barbé.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
