@@ -20,7 +20,7 @@ def test_export():
     root = pkg_resources.resource_filename(__name__, './')
     audiofile = root + 'samples/patatine.wav'
     dest = root + 'exports/'
-    document = partiels.createDocument(audiofile, 'beat_detection')
+    document = partiels.createDocument(audiofile, 'factory')
 
     
     jpeg_exporter = partiels.createJpegExporter()
