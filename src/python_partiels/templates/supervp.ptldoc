@@ -2,7 +2,9 @@
 
 <document MiscModelVersion="131082" viewport_x="0" viewport_y="0" path="/home/toto/Bureau/IRCAM/Projects/supervp.ptldoc"
           grid="1" autoresize="0" samplerate="44100.0" channels="2">
-
+  <reader>
+    <value file="" channel="0"/>
+  </reader>
   <layout value="3c6725fbaeec44c79a1830bdad49124d"/>
   <layout value="32a5d6d710b044ee971986bf95019318"/>
   <timeZoom MiscModelVersion="131082" globalRange_start="0.0" globalRange_end="234.7826303854875"

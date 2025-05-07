@@ -9,10 +9,8 @@ import subprocess
 from .Version import Version
 from .Document import Document
 from .Exporters.ImageExporter import ImageExporter
-from .Exporters.TextExporter import CsvExporter, JsonExporter, CueExporter
+from .Exporters.TextExporter import CsvExporter, JsonExporter, CueExporter, ReaperExporter, LabExporter
 from .Exporters.SdifExporter import SdifExporter
-from .Exporters.ReaperExporter import ReaperExporter
-from .Exporters.LabExporter import LabExporter
 
 PARTIELS_HANDLED_VERSION_MIN = "2.0.9"
 PARTIELS_HANDLED_VERSION_MAX = "2.0.10"
@@ -116,6 +114,18 @@ class Partiels():
         """
         return CsvExporter(self.exec_path, nogrids, header, separator)
 
+    def createReaperExporter(self, reaperType:str = "region"):
+        """Create a ReaperExporter
+        
+            Args:
+                reaperType (str): Defines the type of the reaper format: 'marker' or 'region', default is 'region'.
+        """
+        return ReaperExporter(self.exec_path, reaperType)
+
+    def createLabExporter(self):
+        """Create a LabExporter"""
+        return LabExporter(self.exec_path)
+        
     def createJsonExporter(self, nogrids:bool = False, description:bool = False):
         """Create a JsonExporter
         
@@ -143,15 +153,5 @@ class Partiels():
         """
         return SdifExporter(self.exec_path, frame, matrix, colname)
 
-    def createReaperExporter(self, reaperType:str = "region"):
-        """Create a ReaperExporter
-        
-            Args:
-                reaperType (str): Defines the type of the reaper format: 'marker' or 'region', default is 'region'.
-        """
-        return ReaperExporter(self.exec_path, reaperType)
 
-    def createLabExporter(self):
-        """Create a LabExporter"""
-        return LabExporter(self.exec_path)
 

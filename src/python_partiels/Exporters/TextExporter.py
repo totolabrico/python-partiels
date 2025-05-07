@@ -2,7 +2,6 @@ from .Exporter import Exporter
 from ..Document import Document
 
 class TextExporter(Exporter):
-    
     def __init__(self, exec_path: str, nogrids: bool):
         super().__init__(exec_path)
         self.nogrids = False
@@ -55,6 +54,45 @@ class CsvExporter(TextExporter):
         cmd = self.getCmd(Document, output)
         return super().export(cmd)
 
+
+class ReaperExporter(Exporter): # csv egalement
+    def __init__(self, exec_path: str, reaperType: str):
+        super().__init__(exec_path)
+        if self.setReaperType(reaperType):
+            self.reaper_type = "region"
+
+    def setReaperType(self, value: str):
+        if value != "region" and value != "marker":
+            return super().error("reapertype", "should be region or marker")
+        self.reaper_type = value
+
+    def getCmd(self, Document: Document, output: str):
+        res = super().getCmd(Document, output)
+        res += [
+            "--format=reaper",
+            "--reapertype=" + self.reaper_type,
+        ]
+        return res
+
+    def export(self, Document: Document, output: str):
+        cmd = self.getCmd(Document, output)
+        return super().export(cmd)
+
+
+class LabExporter(TextExporter):
+    def __init__(self, exec_path: str, nogrids: bool):
+        super().__init__(exec_path, nogrids)
+
+    def getCmd(self, Document: Document, output: str):
+        res = super().getCmd(Document, output)
+        res.append("--format=lab")
+        return res
+    
+    def export(self, Document: Document, output: str):
+        cmd = self.getCmd(Document, output)
+        return super().export(cmd)
+
+
 class JsonExporter(TextExporter):
     def __init__(self, exec_path: str, nogrids: bool, description: bool):
         super().__init__(exec_path, nogrids)
@@ -76,6 +114,7 @@ class JsonExporter(TextExporter):
     def export(self, Document: Document, output: str):
         cmd = self.getCmd(Document, output)
         return super().export(cmd)
+
 
 class CueExporter(TextExporter):
     def __init__(self, exec_path: str, nogrids: bool):

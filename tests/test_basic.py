@@ -15,7 +15,8 @@ def test_check_version():
     assert partiels.isHandledVersion == True, "Partiels Executable Version does not match the wrapper" 
 
 
-def exports(partiels, document, dest):    
+def exports(partiels, document, dest):
+    
     jpeg_exporter = partiels.createJpegExporter()
     assert jpeg_exporter.export(document, dest) == 0, "Export JPEG FAILED"
     
@@ -33,15 +34,17 @@ def exports(partiels, document, dest):
     
     '''
     cue_exporter = partiels.createCueExporter()
-    assert cue_exporter.export(document, dest) == 0, "Export CUE FAILED"
+    err = cue_exporter.export(document, dest)
+    assert err == 0, "Export CUE FAILED, ERROR CODE" + str(err)
     
     reaper_exporter = partiels.createReaperExporter()
     assert reaper_exporter.export(document, dest) == 0, "Export REAPER FAILED"
-    
+    '''
+
     sdif_exporter = partiels.createSdifExporter()
     err = sdif_exporter.export(document, dest)
     assert  err == 0, "Export SDIF FAILED. ERROR CODE:" + str(err)
-    '''
+    
 
 def test_export():
     partiels = Partiels()
@@ -52,5 +55,7 @@ def test_export():
     exports(partiels, document, dest)
     document = partiels.createDefaultDocument(audiofile, 'supervp')
     exports(partiels, document, dest)
-    document = partiels.createDefaultDocument(audiofile, 'partiels')
+    document = partiels.createDefaultDocument(audiofile, 'partials')
     exports(partiels, document, dest)
+
+#test_export()

@@ -4,9 +4,9 @@ from ..Document import Document
 class SdifExporter(Exporter):
     def __init__(self, exec_path: str, frame: str, matrix: str, colname: str):
         super().__init__(exec_path)
-        self.frame = ""
-        self.matrix = ""
-        self.colname = ""
+        self.frame = "aaaa"
+        self.matrix = "aaaa"
+        self.colname = "default"
         self.setFrame(frame)
         self.setMatrix(matrix)
         self.setColname(colname)
