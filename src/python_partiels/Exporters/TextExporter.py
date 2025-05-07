@@ -1,3 +1,6 @@
+"""classes for TextExporter"""
+
+
 from .Exporter import Exporter
 from ..Document import Document
 
@@ -8,6 +11,11 @@ class TextExporter(Exporter):
         self.setNogrids(nogrids)
 
     def setNogrids(self, value: bool):
+        """ Set the nogrids option
+
+            Args:
+                value (bool): if True ignores the export of the grid tracks
+        """
         if super().checkBoolAttr("nogrids", value):
             return
         self.nogrids = value
@@ -31,11 +39,21 @@ class CsvExporter(TextExporter):
         self.setSeparator(separator)
 
     def setHeader(self, value: bool):
+        """ Set the header option
+
+            Args:
+                value (bool): if True includes header row before the data rows
+        """
         if super().checkBoolAttr("header", value):
             return
         self.header = value
 
     def setSeparator(self, value: str):
+        """ Set the separator character
+
+            Args:
+                value (str): Defines the separator character between columns
+        """
         if type(value) is not str and len(value) != 1:
             return self.error("character", "value is not valid")
         self.separator = value
@@ -62,6 +80,11 @@ class ReaperExporter(Exporter): # csv egalement
             self.reaper_type = "region"
 
     def setReaperType(self, value: str):
+        """ Set the reapertype
+
+            Args:
+                value (str): Defines the type of the reaper format ('marker' or 'region', default is 'region')
+        """
         if value != "region" and value != "marker":
             return super().error("reapertype", "should be region or marker")
         self.reaper_type = value
@@ -75,6 +98,12 @@ class ReaperExporter(Exporter): # csv egalement
         return res
 
     def export(self, Document: Document, output: str):
+        """ Export the document
+
+            Args:
+                Document (Document): the document to export
+                output (str): the destination folder for the export
+        """
         cmd = self.getCmd(Document, output)
         return super().export(cmd)
 
@@ -89,6 +118,12 @@ class LabExporter(TextExporter):
         return res
     
     def export(self, Document: Document, output: str):
+        """ Export the document
+
+            Args:
+                Document (Document): the document to export
+                output (str): the destination folder for the export
+        """
         cmd = self.getCmd(Document, output)
         return super().export(cmd)
 
@@ -100,6 +135,11 @@ class JsonExporter(TextExporter):
         self.setDescription(description)
 
     def setDescription(self, value: bool):
+        """ Set the description option
+
+            Args:
+                value (bool): if True includes the plugin description
+        """
         if super().checkBoolAttr("description", value):
             return
         self.description = value
@@ -112,6 +152,12 @@ class JsonExporter(TextExporter):
         return res
 
     def export(self, Document: Document, output: str):
+        """ Export the document
+
+            Args:
+                Document (Document): the document to export
+                output (str): the destination folder for the export
+        """
         cmd = self.getCmd(Document, output)
         return super().export(cmd)
 
@@ -126,5 +172,11 @@ class CueExporter(TextExporter):
         return res
     
     def export(self, Document: Document, output: str):
+        """ Export the document
+
+            Args:
+                Document (Document): the document to export
+                output (str): the destination folder for the export
+        """
         cmd = self.getCmd(Document, output)
         return super().export(cmd)

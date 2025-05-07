@@ -1,3 +1,5 @@
+"""A class for ImageExporter, used for jpeg and png formats"""
+
 from .Exporter import Exporter
 from ..Document import Document
 
@@ -14,6 +16,7 @@ class ImageExporter(Exporter):
         self.setHeight(height)
         self.setGroups(groups)
 
+    '''
     def setFormat(self, format: str):
         valid_formats = ["jpeg", "png"]
         format = format.lower()
@@ -21,7 +24,8 @@ class ImageExporter(Exporter):
             return super().error("format", format + " is not a valid format. Valid formats are" + valid_formats)
         self.format = format
         return 0
-
+    '''
+    
     def setDimension(self, name: str, value: int):
         if value < 1:
             return self.error(f"set{name.capitalize()}", "value must be greater than 0")
@@ -35,6 +39,11 @@ class ImageExporter(Exporter):
         return self.setDimension("height", height)
 
     def setGroups(self, value: bool):
+        """ Set the groups option
+
+            Args:
+                value (bool): if True exports the images of group and not the image of the tracks
+        """
         if super().checkBoolAttr("groups", value):
             return
         self.groups = value
@@ -51,5 +60,11 @@ class ImageExporter(Exporter):
         return res
 
     def export(self, Document: Document, output: str):
+        """ Export the document
+
+            Args:
+                Document (Document): the document to export
+                output (str): the destination folder for the export
+        """
         cmd = self.getCmd(Document, output)
         return super().export(cmd)

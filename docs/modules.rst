@@ -6,3 +6,7 @@ src
 
    Partiels
    Document
+   Exporter
+   ImageExporter
+   SdifExporter
+   TextExporter

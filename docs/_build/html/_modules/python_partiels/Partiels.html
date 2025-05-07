@@ -44,10 +44,8 @@
 <span class="kn">from</span> <span class="nn">.Version</span> <span class="kn">import</span> <span class="n">Version</span>
 <span class="kn">from</span> <span class="nn">.Document</span> <span class="kn">import</span> <span class="n">Document</span>
 <span class="kn">from</span> <span class="nn">.Exporters.ImageExporter</span> <span class="kn">import</span> <span class="n">ImageExporter</span>
-<span class="kn">from</span> <span class="nn">.Exporters.TextExporter</span> <span class="kn">import</span> <span class="n">CsvExporter</span><span class="p">,</span> <span class="n">JsonExporter</span><span class="p">,</span> <span class="n">CueExporter</span>
+<span class="kn">from</span> <span class="nn">.Exporters.TextExporter</span> <span class="kn">import</span> <span class="n">CsvExporter</span><span class="p">,</span> <span class="n">JsonExporter</span><span class="p">,</span> <span class="n">CueExporter</span><span class="p">,</span> <span class="n">ReaperExporter</span><span class="p">,</span> <span class="n">LabExporter</span>
 <span class="kn">from</span> <span class="nn">.Exporters.SdifExporter</span> <span class="kn">import</span> <span class="n">SdifExporter</span>
-<span class="kn">from</span> <span class="nn">.Exporters.ReaperExporter</span> <span class="kn">import</span> <span class="n">ReaperExporter</span>
-<span class="kn">from</span> <span class="nn">.Exporters.LabExporter</span> <span class="kn">import</span> <span class="n">LabExporter</span>
 
 <span class="n">PARTIELS_HANDLED_VERSION_MIN</span> <span class="o">=</span> <span class="s2">&quot;2.0.9&quot;</span>
 <span class="n">PARTIELS_HANDLED_VERSION_MAX</span> <span class="o">=</span> <span class="s2">&quot;2.0.10&quot;</span>
@@ -151,6 +149,18 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">CsvExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">nogrids</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">separator</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="Partiels.createReaperExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createReaperExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createReaperExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaperType</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;region&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a ReaperExporter</span>
+<span class="sd">        </span>
+<span class="sd">            Args:</span>
+<span class="sd">                reaperType (str): Defines the type of the reaper format: &#39;marker&#39; or &#39;region&#39;, default is &#39;region&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ReaperExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">reaperType</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Partiels.createLabExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createLabExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createLabExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a LabExporter&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">LabExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">)</span></div>
+        
 <div class="viewcode-block" id="Partiels.createJsonExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createJsonExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createJsonExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nogrids</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a JsonExporter</span>
 <span class="sd">        </span>
@@ -176,19 +186,9 @@
 <span class="sd">                matrix (str): &lt;matrixsignature&gt; Defines the 4 characters matrix signaturer</span>
 <span class="sd">                colname (str): Defines the name of the column</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">SdifExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">colname</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">SdifExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">colname</span><span class="p">)</span></div></div>
 
-<div class="viewcode-block" id="Partiels.createReaperExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createReaperExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createReaperExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reaperType</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;region&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a ReaperExporter</span>
-<span class="sd">        </span>
-<span class="sd">            Args:</span>
-<span class="sd">                reaperType (str): Defines the type of the reaper format: &#39;marker&#39; or &#39;region&#39;, default is &#39;region&#39;.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ReaperExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">,</span> <span class="n">reaperType</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Partiels.createLabExporter"><a class="viewcode-back" href="../../Partiels.html#python_partiels.Partiels.Partiels.createLabExporter">[docs]</a>    <span class="k">def</span> <span class="nf">createLabExporter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a LabExporter&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">LabExporter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_path</span><span class="p">)</span></div></div>
 
 </pre></div>
 
